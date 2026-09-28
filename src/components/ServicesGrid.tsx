@@ -1,5 +1,4 @@
 import type { CSSProperties } from 'react'
-import { Link } from 'react-router-dom'
 import { MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
 import type { Icon } from '@/components/slab'
 import Autopilot, { TOOLS } from '@/components/Autopilot'
