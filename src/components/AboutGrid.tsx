@@ -79,7 +79,7 @@ export default function AboutGrid() {
           </p>
 
           <p className="agrid__note">
-            I have led daily operations, supported hiring, and managed digital marketing. I now apply that experience to practical AI and business automation projects.
+            I recently spent five months (May–September 2026) as a Facebook Community Manager and AI Automation Specialist. I managed the business’s own and hosted Facebook groups, created marketing posts, and handled admin tasks. I researched student groups in cities worldwide; maintained lead databases in Sheets, Excel, and the company CRM; engaged members and promoted TSL communities, events, and housing; monitored growth opportunities; worked with the Philippines-based Facebook Marketing Team; and introduced AI tools and automations to improve team workflows.
           </p>
 
           <ul className="agrid__caps" role="list">
@@ -111,8 +111,8 @@ export default function AboutGrid() {
                 <img src="/placeholders/badge.svg" alt="" loading="lazy" decoding="async" />
               </span>
               <span className="agrid__cell-copy">
-                <span className="agrid__cell-title">Operations & leadership</span>
-                <span className="agrid__cell-meta">Professional experience</span>
+                <span className="agrid__cell-title">Facebook Community Manager & AI Automation Specialist</span>
+                <span className="agrid__cell-meta">May–September 2026 · 5 months</span>
               </span>
             </span>
 
