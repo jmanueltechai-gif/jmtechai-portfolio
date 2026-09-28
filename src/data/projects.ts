@@ -19,9 +19,9 @@ export const mobileApps: MobileApp[] = [
     name: 'Automated Job Listing Tracker',
     tagline: 'A refreshed shortlist of relevant remote opportunities.',
     description: 'An n8n workflow collects Remotive listings, checks Airtable for existing job IDs, scores matches with Gemini, then saves the results. Useful for recruiters, staffing teams, and freelancers looking for work.',
-    imageSrc: 'https://jmtechautomation.lovable.app/assets/project-6-U4R_ipAk.png',
+    
     accentColor: '#7C3AED',
-    stats: [{ value: '6 hrs', label: 'Scheduled refresh' }, { value: '38', label: 'Records in screenshot' }, { value: 'AI', label: 'Match scoring' }],
+    stats: [{ value: '6 hrs', label: 'Scheduled refresh' }, { value: '38', label: 'Records shown' }, { value: 'AI', label: 'Match scoring' }],
     badge: 'Featured · n8n',
   },
 ]
