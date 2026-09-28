@@ -3,7 +3,6 @@ import gsap from 'gsap'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import {
   Lightning,
-  CalendarCheck,
   Clock,
   FileText,
   Plug,
