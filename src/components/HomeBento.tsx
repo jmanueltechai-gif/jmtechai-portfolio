@@ -128,13 +128,13 @@ export default function HomeBento() {
 
       {/* Credentials: the badge that matters, on its plate. */}
       <Link to="/about" className="bento__card bento__card--creds">
-        <CardHead Icon={Medal} title="Experience" desc="Operations, recruitment, and digital marketing experience." />
+        <CardHead Icon={Medal} title="Experience" desc="Experience across operations, recruitment, marketing, and community work." />
         <div className="bento__media bento__badge" aria-hidden="true">
           <span className="bento__badge-ring">
             <Medal size={42} weight="duotone" aria-hidden="true" />
           </span>
           <span className="bento__badge-tag">
-            <SealCheck size={14} weight="fill" />
+            <Stack size={14} weight="duotone" />
             Operations · Community · Automation
           </span>
         </div>
@@ -161,7 +161,7 @@ export default function HomeBento() {
         </ul>
       </Link>
 
-      {/* Testimonials: client cards drifting up a clipped column. */}
+      {/* Recent work: project cards drifting up a clipped column. */}
       <Link to="/projects" className="bento__card bento__card--quotes">
         <CardHead Icon={FolderOpen} title="Recent work" desc="Selected projects in AI, automation, and operations." />
         <div className="bento__media bento__reviews" aria-hidden="true">
