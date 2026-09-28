@@ -36,16 +36,16 @@ const PROJECT_SHOTS = [gymFunnel[0], bookingFunnel[0], websiteFunnel[0], gymFunn
 
 const OFFERS = [
   { Icon: FunnelSimple, title: 'AI & business automation', note: 'Practical workflows that save time and keep work organized.' },
-  { Icon: Gear, title: 'Operations management', note: 'PLACEHOLDER one-liner' },
-  { Icon: AddressBook, title: 'Team leadership & recruitment', note: 'PLACEHOLDER one-liner' },
-  { Icon: Globe, title: 'Digital marketing', note: 'PLACEHOLDER one-liner' },
-  { Icon: AppWindow, title: 'Process improvement', note: 'PLACEHOLDER one-liner' },
+  { Icon: Gear, title: 'Operations management', note: 'Practical support shaped around your team’s goals.' },
+  { Icon: AddressBook, title: 'Team leadership & recruitment', note: 'Practical support shaped around your team’s goals.' },
+  { Icon: Globe, title: 'Digital marketing', note: 'Practical support shaped around your team’s goals.' },
+  { Icon: AppWindow, title: 'Process improvement', note: 'Practical support shaped around your team’s goals.' },
 ] as const
 
 const CLIENTS = [
-  { name: 'Client Name 1', role: 'PLACEHOLDER - your role for them', work: 'Tag · Tag · Tag', logo: '/placeholders/logo.svg' },
-  { name: 'Client Name 2', role: 'PLACEHOLDER - your role for them', work: 'Tag · Tag · Tag', logo: '/placeholders/logo.svg' },
-  { name: 'Client Name 3', role: 'PLACEHOLDER - your role for them', work: 'Tag · Tag · Tag' },
+  { name: 'ReceiptIQ', role: 'Expense and receipt tracker', work: 'AI · Reports · Web app' },
+  { name: 'Job Listing Tracker', role: 'Automated job discovery workflow', work: 'n8n · Airtable · Gemini' },
+  { name: 'Operations background', role: 'Leadership and process improvement', work: 'Operations · Recruitment · Marketing' },
 ]
 
 // Three photos of you, fanned. Small copies are fine - the fan shows them under 100px.
@@ -133,21 +133,21 @@ export default function HomeBento() {
 
       {/* Credentials: the badge that matters, on its plate. */}
       <Link to="/about" className="bento__card bento__card--creds">
-        <CardHead Icon={Medal} title="Credentials" desc="PLACEHOLDER - your main certification." />
+        <CardHead Icon={Medal} title="Experience" desc="Operations, recruitment, and digital marketing experience." />
         <div className="bento__media bento__badge" aria-hidden="true">
           <span className="bento__badge-ring">
             <img src="/placeholders/badge.svg" alt="" width={72} height={72} />
           </span>
           <span className="bento__badge-tag">
             <SealCheck size={14} weight="fill" />
-            Your Credential
+            Operations & Leadership
           </span>
         </div>
       </Link>
 
       {/* Services: the five offers as a compact index. */}
       <Link to="/services" className="bento__card bento__card--services">
-        <CardHead Icon={Stack} title="Services" desc="PLACEHOLDER - what you offer, and to whom." />
+        <CardHead Icon={Stack} title="Services" desc="Automation, operations, recruitment, marketing, and process improvement." />
         <ul className="bento__media bento__offers" role="list">
           {OFFERS.map(({ Icon, title, note }, i) => (
             <li key={title} className="bento__offer" style={{ '--i': i } as React.CSSProperties}>
@@ -168,7 +168,7 @@ export default function HomeBento() {
 
       {/* Testimonials: client cards drifting up a clipped column. */}
       <Link to="/testimonials" className="bento__card bento__card--quotes">
-        <CardHead Icon={Quotes} title="Testimonials" desc="PLACEHOLDER - one line on your clients." />
+        <CardHead Icon={Quotes} title="Recent work" desc="Two recent projects: ReceiptIQ and the Job Listing Tracker." />
         <div className="bento__media bento__reviews" aria-hidden="true">
           <div className="bento__reviews-track">
             {[...CLIENTS, ...CLIENTS].map((c, i) => (
