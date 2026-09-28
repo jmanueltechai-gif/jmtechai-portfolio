@@ -35,11 +35,11 @@ const thumbSrc = (f: Funnel) =>
 const PROJECT_SHOTS = [gymFunnel[0], bookingFunnel[0], websiteFunnel[0], gymFunnel[1]].filter(Boolean)
 
 const OFFERS = [
-  { Icon: FunnelSimple, title: 'Service One', note: 'PLACEHOLDER one-liner' },
-  { Icon: Gear, title: 'Service Two', note: 'PLACEHOLDER one-liner' },
-  { Icon: AddressBook, title: 'Service Three', note: 'PLACEHOLDER one-liner' },
-  { Icon: Globe, title: 'Service Four', note: 'PLACEHOLDER one-liner' },
-  { Icon: AppWindow, title: 'Service Five', note: 'PLACEHOLDER one-liner' },
+  { Icon: FunnelSimple, title: 'AI & business automation', note: 'Practical workflows that save time and keep work organized.' },
+  { Icon: Gear, title: 'Operations management', note: 'PLACEHOLDER one-liner' },
+  { Icon: AddressBook, title: 'Team leadership & recruitment', note: 'PLACEHOLDER one-liner' },
+  { Icon: Globe, title: 'Digital marketing', note: 'PLACEHOLDER one-liner' },
+  { Icon: AppWindow, title: 'Process improvement', note: 'PLACEHOLDER one-liner' },
 ] as const
 
 const CLIENTS = [
@@ -87,7 +87,7 @@ export default function HomeBento() {
     <nav className="bento" aria-label="Explore the portfolio">
       {/* Projects: the funnel thumbnails drift upward on a looped track. */}
       <Link to="/projects" className="bento__card bento__card--projects">
-        <CardHead Icon={FolderOpen} title="Projects" desc="PLACEHOLDER - one line on what your projects are." />
+        <CardHead Icon={FolderOpen} title="Projects" desc="Recent work in automation, operations, and AI-powered tools." />
         <div className="bento__media bento__reel" aria-hidden="true">
           <div className="bento__reel-track">
             {[...PROJECT_SHOTS, ...PROJECT_SHOTS].map((f, i) => (
@@ -101,7 +101,7 @@ export default function HomeBento() {
 
       {/* About: a fanned stack of photos. */}
       <Link to="/about" className="bento__card bento__card--about">
-        <CardHead Icon={User} title="About" desc="PLACEHOLDER - one line about you." />
+        <CardHead Icon={User} title="About" desc="Operations leader building practical business automations." />
         <div className="bento__media bento__fan" aria-hidden="true">
           {PHOTOS.map((src, i) => (
             <span key={src} className="bento__photo" style={{ ['--i' as string]: i }}>
@@ -114,7 +114,7 @@ export default function HomeBento() {
       {/* AI builds: the systems from the Projects tree, two chip rows
           scrolling against each other. */}
       <Link to="/projects" className="bento__card bento__card--ai">
-        <CardHead Icon={Robot} title="AI Builds" desc="PLACEHOLDER - one line on your AI or side builds." />
+        <CardHead Icon={Robot} title="AI Builds" desc="Projects designed to reduce repetitive work and make information easier to use." />
         <div className="bento__media bento__chips" aria-hidden="true">
           {toolRows.map((row, r) => (
             <div key={r} className="bento__chip-row" data-dir={r ? 'right' : 'left'}>
