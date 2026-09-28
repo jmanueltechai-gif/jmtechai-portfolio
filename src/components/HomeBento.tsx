@@ -13,7 +13,7 @@ import {
   Globe,
   AppWindow,
 } from '@/components/slab'
-import { aiStack, type StackNode } from '@/data/ai-stack'
+import { aiStack } from '@/data/ai-stack'
 import { profile } from '@/data/profile'
 
 /**
@@ -51,6 +51,7 @@ const CLIENTS: ClientCard[] = [
   { name: 'Lead Nurture Sequence', role: 'New-contact follow-up workflow', work: 'GoHighLevel · Email · SMS' },
 ]
 
+const AI_BUILDS = aiStack.children ?? []
 
 function CardHead({
   Icon,
