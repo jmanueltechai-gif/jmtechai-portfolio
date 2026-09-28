@@ -38,22 +38,22 @@ type Capability = {
 const CAPABILITIES: Capability[] = [
   {
     index: '01',
-    title: 'Your role 1',
+    title: 'AI & business automation',
     marks: [N8N, ZAPIER, DOCKER],
   },
   {
     index: '02',
-    title: 'Your role 2',
+    title: 'Operations management',
     marks: [CLAUDE, CODEX, GLM, QWEN, HERMES],
   },
   {
     index: '03',
-    title: 'Your role 3',
+    title: 'Team leadership & recruitment',
     marks: [CLAUDE, CODEX, NAMECHEAP, CLOUDFLARE, GITHUB],
   },
   {
     index: '04',
-    title: 'Your role 4',
+    title: 'Digital marketing & reporting',
     marks: [GWS, SLACK, FIREFLIES],
   },
 ]
@@ -67,24 +67,19 @@ export default function AboutGrid() {
           {`Hi, I’m ${profile.firstName}.`}
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one line on what you do.
+          I bring hands-on experience in operations, marketing, recruitment, and team leadership.
         </p>
       </header>
 
       <div className="home__glass agrid__glass">
         <div className="agrid__copy">
           <p className="agrid__lead">
-            Your big statement goes here, in one or two lines.
-            <span> A softer second half that finishes the thought.</span>
+            I help teams make work easier to manage.
+            <span> By improving processes and adding useful automation.</span>
           </p>
 
           <p className="agrid__note">
-            <strong>Your company name</strong>, and{' '}
-            <a className="agrid__link" href="#">
-              your product
-            </a>{' '}
-            - PLACEHOLDER - tell me what to put here: two sentences on your company, what
-            you sell or build, and who it is for.
+            I have led daily operations, supported hiring, and managed digital marketing. I now apply that experience to practical AI and business automation projects.
           </p>
 
           <ul className="agrid__caps" role="list">
@@ -116,8 +111,8 @@ export default function AboutGrid() {
                 <img src="/placeholders/badge.svg" alt="" loading="lazy" decoding="async" />
               </span>
               <span className="agrid__cell-copy">
-                <span className="agrid__cell-title">Credential name</span>
-                <span className="agrid__cell-meta">Credential ID</span>
+                <span className="agrid__cell-title">Operations & leadership</span>
+                <span className="agrid__cell-meta">Professional experience</span>
               </span>
             </span>
 
@@ -127,7 +122,7 @@ export default function AboutGrid() {
               </span>
               <span className="agrid__cell-copy">
                 <span className="agrid__cell-title">{profile.location}</span>
-                <span className="agrid__cell-meta">Timezone · working hours</span>
+                <span className="agrid__cell-meta">Remote collaboration</span>
               </span>
             </span>
 
@@ -136,8 +131,8 @@ export default function AboutGrid() {
                 <img src="/placeholders/logo.svg" alt="" loading="lazy" decoding="async" />
               </span>
               <span className="agrid__cell-copy">
-                <span className="agrid__cell-title">Community or affiliation</span>
-                <span className="agrid__cell-meta">Your role there</span>
+                <span className="agrid__cell-title">AI & automation</span>
+                <span className="agrid__cell-meta">Ongoing learning</span>
               </span>
               <ArrowUpRight className="agrid__cell-go" size={15} weight="bold" aria-hidden="true" />
             </a>
