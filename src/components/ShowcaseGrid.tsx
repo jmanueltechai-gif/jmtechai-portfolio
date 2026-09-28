@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight, Ticket } from '@/components/slab'
 
-const HIGHLIGHTS = [
+type Highlight = {
+  title: string
+  label: string
+  description: string
+  image?: string
+  imageAlt?: string
+  href: string
+  action: string
+  external: boolean
+}
+
+const HIGHLIGHTS: Highlight[] = [
   {
     title: 'ReceiptIQ',
     label: 'AI expense & receipt tracker',
