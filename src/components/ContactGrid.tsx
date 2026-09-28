@@ -60,10 +60,10 @@ export default function ContactGrid() {
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">FAQs / Contact</span>
         <h1 className="pgrid__title" id="contact-title">
-          Your contact headline goes here.
+          Let’s talk about your workflow.
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one or two lines inviting people to write and saying what they get back.
+          Tell me what your team is working on and where you would like to save time.
         </p>
       </header>
 
@@ -132,8 +132,8 @@ export default function ContactGrid() {
               </h2>
               <p className="cgrid__done-body">
                 {status.via === 'webhook'
-                  ? 'It is in my inbox and on my phone. You will hear back within one business day.'
-                  : 'The message is laid out and addressed. Press send there and you will hear back within one business day.'}
+                  ? 'Your message was sent.'
+                  : 'Your email draft is ready. Press send in your mail app.'}
               </p>
               <button type="button" className="cgrid__again" onClick={() => setStatus({ kind: 'idle' })}>
                 Write another
@@ -169,7 +169,7 @@ export default function ContactGrid() {
               </label>
 
               <label className="cgrid__field cgrid__field--grow">
-                <span className="cgrid__label">Tell me more about your business</span>
+                <span className="cgrid__label">What would you like help with?</span>
                 <textarea
                   name="message"
                   required
@@ -197,7 +197,7 @@ export default function ContactGrid() {
                     {status.note}
                   </span>
                 ) : (
-                  <span className="cgrid__hint">Short reassurance line, e.g. your reply time.</span>
+                  <span className="cgrid__hint">Your message will open in your email app.</span>
                 )}
               </div>
             </form>
