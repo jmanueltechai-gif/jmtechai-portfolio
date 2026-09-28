@@ -42,7 +42,9 @@ const OFFERS = [
   { Icon: AppWindow, title: 'Process improvement', note: 'Practical support shaped around your team’s goals.' },
 ] as const
 
-const CLIENTS = [
+type ClientCard = { name: string; role: string; work: string; logo?: string }
+
+const CLIENTS: ClientCard[] = [
   { name: 'ReceiptIQ', role: 'Expense and receipt tracker', work: 'AI · Reports · Web app' },
   { name: 'Job Listing Tracker', role: 'Automated job discovery workflow', work: 'n8n · Airtable · Gemini' },
   { name: 'Operations background', role: 'Leadership and process improvement', work: 'Operations · Recruitment · Marketing' },
