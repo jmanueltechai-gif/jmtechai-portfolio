@@ -37,7 +37,7 @@ const CAPABILITIES: Capability[] = [
 
 export default function AboutGrid() {
   return (
-    <section className="pgrid agrid" aria-labelledby="about-title">
+    <section className="pgrid agrid pgrid--scroll" aria-labelledby="about-title">
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">About</span>
         <h1 className="pgrid__title" id="about-title">
