@@ -42,7 +42,7 @@ const PROJECTS: Project[] = [
     Icon: Robot,
     tools: ['Zapier', 'Apollo.io', 'Google Sheets', 'Slack'],
     thumbnail: 'https://jmtechautomation.lovable.app/assets/project-1-CKUT4pWa.png',
-    CaseStudy: <LegacyCaseStudy title="Autonomous Lead Enrichment & Scoring Pipeline" subtitle="A lead workflow that adds useful context to form submissions and helps teams prioritize follow-up." details={['Connects submitted forms with Apollo.io for contact enrichment.', 'Applies a custom score and routes enterprise and small-business leads separately.', 'Records lead details in Google Sheets and sends Slack notifications.']} tools="Zapier, Apollo.io, Google Sheets, and Slack" />,
+    CaseStudy: <LegacyCaseStudy title="Autonomous Lead Enrichment & Scoring Pipeline" subtitle="A lead workflow that adds useful context to form submissions and helps teams prioritize follow-up." details={['Connects submitted forms with Apollo.io for contact enrichment.', 'Applies a custom score and routes enterprise and small-business leads separately.', 'Records lead details in Google Sheets and sends Slack notifications.']} tools="Zapier, Apollo.io, Google Sheets, and Slack" screenshot="https://jmtechautomation.lovable.app/assets/project-1-CKUT4pWa.png" />,
   },
   {
     id: 'financial-reconciliation',
@@ -52,7 +52,7 @@ const PROJECTS: Project[] = [
     Icon: Stack,
     tools: ['Make', 'Asana', 'Xero', 'Google Sheets'],
     thumbnail: 'https://jmtechautomation.lovable.app/assets/project-2-Bt3bzDYm.png',
-    CaseStudy: <LegacyCaseStudy title="Automated Financial Reconciliation Pipeline" subtitle="A workflow designed to keep transaction details consistent as they move from project work into accounting." details={['Moves relevant transaction data from project tracking toward accounting.', 'Reduces repeated manual entry between tools.', 'Keeps a clearer record for review and reporting.']} tools="Make, Asana, Xero, and Google Sheets" />,
+    CaseStudy: <LegacyCaseStudy title="Automated Financial Reconciliation Pipeline" subtitle="A workflow designed to keep transaction details consistent as they move from project work into accounting." details={['Moves relevant transaction data from project tracking toward accounting.', 'Reduces repeated manual entry between tools.', 'Keeps a clearer record for review and reporting.']} tools="Make, Asana, Xero, and Google Sheets" screenshot="https://jmtechautomation.lovable.app/assets/project-2-Bt3bzDYm.png" />,
   },
   {
     id: 'healthcare-hiring',
@@ -62,7 +62,7 @@ const PROJECTS: Project[] = [
     Icon: Stack,
     tools: ['Make', 'Google Forms', 'Gmail', 'Slack'],
     thumbnail: 'https://jmtechautomation.lovable.app/assets/project-3-EkJPV2UP.png',
-    CaseStudy: <LegacyCaseStudy title="Automated Healthcare Hiring Pipeline" subtitle="A multi-step hiring workflow for a healthcare practice, designed to make candidate progress easier to follow." details={['Captures new applications through a form.', 'Moves candidate information through a structured hiring process.', 'Shares status updates with the team as candidates progress.']} tools="Make, Google Forms, Gmail, Slack, and Google Sheets" />,
+    CaseStudy: <LegacyCaseStudy title="Automated Healthcare Hiring Pipeline" subtitle="A multi-step hiring workflow for a healthcare practice, designed to make candidate progress easier to follow." details={['Captures new applications through a form.', 'Moves candidate information through a structured hiring process.', 'Shares status updates with the team as candidates progress.']} tools="Make, Google Forms, Gmail, Slack, and Google Sheets" screenshot="https://jmtechautomation.lovable.app/assets/project-3-EkJPV2UP.png" />,
   },
   {
     id: 'crm-engagement',
@@ -72,7 +72,7 @@ const PROJECTS: Project[] = [
     Icon: Robot,
     tools: ['Zapier', 'Asana', 'Gmail', 'Google Drive'],
     thumbnail: 'https://jmtechautomation.lovable.app/assets/project-4-DA-tUzps.png',
-    CaseStudy: <LegacyCaseStudy title="Automated CRM Lead Engagement & Pipeline Orchestration" subtitle="A lead-engagement workflow built to make sure high-priority prospects receive timely, organized follow-up." details={['Tracks prospects as they move from new lead to active engagement.', 'Creates follow-up tasks and keeps supporting information together.', 'Helps the team respond consistently to higher-priority prospects.']} tools="Zapier, Asana, Gmail, Google Drive, and AI by Zapier" />,
+    CaseStudy: <LegacyCaseStudy title="Automated CRM Lead Engagement & Pipeline Orchestration" subtitle="A lead-engagement workflow built to make sure high-priority prospects receive timely, organized follow-up." details={['Tracks prospects as they move from new lead to active engagement.', 'Creates follow-up tasks and keeps supporting information together.', 'Helps the team respond consistently to higher-priority prospects.']} tools="Zapier, Asana, Gmail, Google Drive, and AI by Zapier" screenshot="https://jmtechautomation.lovable.app/assets/project-4-DA-tUzps.png" />,
   },
   {
     id: 'lead-booking',
@@ -82,7 +82,7 @@ const PROJECTS: Project[] = [
     Icon: Robot,
     tools: ['GoHighLevel', 'Forms', 'Calendar'],
     thumbnail: 'https://jmtechautomation.lovable.app/assets/project-5-1-CTADJPzH.png',
-    CaseStudy: <LegacyCaseStudy title="Automated Lead Qualification & Booking Pipeline" subtitle="A 20-plus-step GoHighLevel workflow for capturing consultation requests and guiding each lead toward the right next step." details={['Routes requests by service type, including consultation, general inquiry, and project quote.', 'Sends a calendar link, checks booking status, and follows up when needed.', 'Updates the CRM stage as the lead moves through the process.']} tools="GoHighLevel, forms, calendar, CRM pipeline, and email automation" />,
+    CaseStudy: <LegacyCaseStudy title="Automated Lead Qualification & Booking Pipeline" subtitle="A 20-plus-step GoHighLevel workflow for capturing consultation requests and guiding each lead toward the right next step." details={['Routes requests by service type, including consultation, general inquiry, and project quote.', 'Sends a calendar link, checks booking status, and follows up when needed.', 'Updates the CRM stage as the lead moves through the process.']} tools="GoHighLevel, forms, calendar, CRM pipeline, and email automation" screenshot="https://jmtechautomation.lovable.app/assets/project-5-1-CTADJPzH.png" />,
   },
   {
     id: 'lead-nurture',
@@ -92,7 +92,7 @@ const PROJECTS: Project[] = [
     Icon: Robot,
     tools: ['GoHighLevel', 'Email', 'SMS'],
     thumbnail: 'https://jmtechautomation.lovable.app/assets/project-6-U4R_ipAk.png',
-    CaseStudy: <LegacyCaseStudy title="Automated Lead Nurture Sequence" subtitle="A seven-step follow-up workflow that starts when a new contact enters the CRM." details={['Sends a personalized first response after a short delay and notifies the team.', 'Adds a new-lead tag and creates an opportunity in the pipeline.', 'Assigns a follow-up task so the next action is easy to find.']} tools="GoHighLevel, email, SMS, CRM pipeline, and task management" />,
+    CaseStudy: <LegacyCaseStudy title="Automated Lead Nurture Sequence" subtitle="A seven-step follow-up workflow that starts when a new contact enters the CRM." details={['Sends a personalized first response after a short delay and notifies the team.', 'Adds a new-lead tag and creates an opportunity in the pipeline.', 'Assigns a follow-up task so the next action is easy to find.']} tools="GoHighLevel, email, SMS, CRM pipeline, and task management" screenshot="https://jmtechautomation.lovable.app/assets/project-6-U4R_ipAk.png" />,
   },
 
 ]
@@ -217,16 +217,26 @@ function ReceiptIQCaseStudy() {
   )
 }
 
-function LegacyCaseStudy({ title, subtitle, details, tools }: {
+function LegacyCaseStudy({ title, subtitle, details, tools, screenshot }: {
   title: string
   subtitle: string
   details: string[]
   tools: string
+  screenshot: string
 }) {
   return (
     <StoryFrame title={title} subtitle={subtitle}>
       <CaseSection title="What the workflow does">
         <ul>{details.map((detail) => <li key={detail}>{detail}</li>)}</ul>
+      </CaseSection>
+      <CaseSection title="Workflow example">
+        <img
+          src={screenshot}
+          alt={`Workflow screenshot for ${title}`}
+          loading="lazy"
+          decoding="async"
+          style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 14, border: '1px solid #d7d9d2' }}
+        />
       </CaseSection>
       <CaseSection title="Tools">
         <p>{tools}</p>
