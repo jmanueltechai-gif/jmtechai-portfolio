@@ -27,8 +27,13 @@ import { profile } from '@/data/profile'
  */
 
 const PROJECT_SHOTS = [
+  'https://jmtechautomation.lovable.app/assets/project-1-CKUT4pWa.png',
+  'https://jmtechautomation.lovable.app/assets/project-2-Bt3bzDYm.png',
+  'https://jmtechautomation.lovable.app/assets/project-3-EkJPV2UP.png',
+  'https://jmtechautomation.lovable.app/assets/project-4-DA-tUzps.png',
+  'https://jmtechautomation.lovable.app/assets/project-5-1-CTADJPzH.png',
+  'https://jmtechautomation.lovable.app/assets/project-6-U4R_ipAk.png',
   '/projects/job-listing-workflow.png',
-  '/projects/receiptiq-preview.svg',
 ]
 const OFFERS = [
   { Icon: FunnelSimple, title: 'AI & business automation', note: 'Practical workflows that save time and keep work organized.' },
