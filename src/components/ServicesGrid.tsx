@@ -13,7 +13,7 @@ import Autopilot, { TOOLS } from '@/components/Autopilot'
  * Projects: the glass, the bento card, plated marks, orange for the index
  * and the accent.
  *
- * Every string below is a PLACEHOLDER. Replace it, or hand this file to your
+ * Every string below is a Practical support. Replace it, or hand this file to your
  * AI assistant and tell it what to put in each spot.
  */
 
@@ -30,22 +30,22 @@ type Stage = {
 const STAGES: Stage[] = [
   {
     index: '01',
-    label: 'Step 1',
-    body: 'PLACEHOLDER - one line on what happens in this step.',
+    label: 'Understand',
+    body: 'Learn the current process and the team's needs.',
     Icon: MagnetStraight,
-    chips: ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4'],
+    chips: ['Process review', 'Clear goals', 'Team input', 'Planning'],
   },
   {
     index: '02',
-    label: 'Step 2',
-    body: 'PLACEHOLDER - one line on what happens in this step.',
+    label: 'Improve',
+    body: 'Practical support - one line on what happens in this step.',
     Icon: Timer,
     chips: ['Tag 1', 'Tag 2', 'Tag 3'],
   },
   {
     index: '03',
-    label: 'Step 3',
-    body: 'PLACEHOLDER - one line on the result the client gets.',
+    label: 'Automate',
+    body: 'Create a clear, easier-to-manage workflow.',
     Icon: Trophy,
     chips: ['Tag 1', 'Tag 2', 'Tag 3'],
   },
@@ -76,47 +76,47 @@ type Service = {
   bullets: string[]
 }
 
-const BULLETS = ['PLACEHOLDER benefit 1', 'PLACEHOLDER benefit 2', 'PLACEHOLDER benefit 3']
-const SERVICE_DESC = 'PLACEHOLDER - one line on this service.'
+const BULLETS = ['Reduce repetitive work', 'Keep tasks organized', 'Make progress easier to track']
+const SERVICE_DESC = 'Practical support shaped around your team's goals.'
 
 const SERVICES: Service[] = [
   {
     index: '01',
-    title: 'Service One',
+    title: 'AI & business automation',
     description: SERVICE_DESC,
-    chip: 'PLACEHOLDER',
+    chip: 'Practical support',
     logos: [GHL, REACT, TAILWIND],
     bullets: BULLETS,
   },
   {
     index: '02',
-    title: 'Service Two',
+    title: 'Operations management',
     description: SERVICE_DESC,
-    chip: 'PLACEHOLDER',
+    chip: 'Practical support',
     logos: [GHL, N8N, OPENAI],
     bullets: BULLETS,
   },
   {
     index: '03',
-    title: 'Service Three',
+    title: 'Team leadership & recruitment',
     description: SERVICE_DESC,
-    chip: 'PLACEHOLDER',
+    chip: 'Practical support',
     logos: [GHL, GWS, SLACK],
     bullets: BULLETS,
   },
   {
     index: '04',
-    title: 'Service Four',
+    title: 'Digital marketing',
     description: SERVICE_DESC,
-    chip: 'PLACEHOLDER',
+    chip: 'Practical support',
     logos: [REACT, VITE, CLOUDFLARE],
     bullets: BULLETS,
   },
   {
     index: '05',
-    title: 'Service Five',
+    title: 'Process improvement & reporting',
     description: SERVICE_DESC,
-    chip: 'PLACEHOLDER',
+    chip: 'Practical support',
     logos: [CLAUDE_CODE, EXPO, CHROME],
     bullets: BULLETS,
   },
@@ -143,10 +143,10 @@ export default function ServicesGrid() {
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">Services</span>
         <h1 className="pgrid__title" id="services-title">
-          Your services headline, in one short line.
+          Make everyday work run more smoothly.
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one line on what you offer.
+          I combine operations experience with practical automation, team support, and digital marketing.
         </p>
       </header>
 
@@ -157,12 +157,12 @@ export default function ServicesGrid() {
           <div className="sgrid__method-copy">
             <span className="sgrid__method-eyebrow">Your Method</span>
             <h2 className="sgrid__method-title" id="method-title">
-              One. Two. Three.
+              Understand. Improve. Automate.
               <br />
-              <span>Your method, in three steps.</span>
+              <span>A practical path to better workflows.</span>
             </h2>
             <p className="sgrid__method-sub">
-              PLACEHOLDER - one sentence on why your method works.
+              Start with the real day-to-day problem, then choose a solution that fits.
             </p>
           </div>
 
@@ -191,8 +191,8 @@ export default function ServicesGrid() {
         {/* Five cards, each carrying the marks of what it is built with. */}
         <div className="sgrid__offers">
           <div className="sgrid__offers-head">
-            <h2 className="sgrid__offers-title">Your services, listed.</h2>
-            <p className="sgrid__offers-sub">PLACEHOLDER - one short nudge.</p>
+            <h2 className="sgrid__offers-title">Ways I can contribute.</h2>
+            <p className="sgrid__offers-sub">Practical support - one short nudge.</p>
           </div>
           <ul className="bento sgrid__services" role="list">
             {SERVICES.map((s) => (
@@ -225,9 +225,9 @@ export default function ServicesGrid() {
           <header className="sgrid__flow-head">
             <div className="sgrid__flow-copy">
               <span className="sgrid__flow-eyebrow">Live automation</span>
-              <h2 className="sgrid__flow-title">Your automation headline.</h2>
+              <h2 className="sgrid__flow-title">Job Listing Tracker</h2>
               <p className="sgrid__flow-sub">
-                PLACEHOLDER - tell me what to put here: one sentence on what this example automation does for a client.
+                Practical support - tell me what to put here: one sentence on what this example automation does for a client.
               </p>
             </div>
             <ul className="sgrid__flow-tools" role="list" aria-label="Tools that power this flow">
