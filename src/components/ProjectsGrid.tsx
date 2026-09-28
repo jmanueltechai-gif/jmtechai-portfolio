@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type ComponentType, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { ArrowUpRight, X, Ticket, Robot, CursorClick } from '@/components/slab'
+import { ArrowUpRight, X, Ticket, Robot, CursorClick, Stack } from '@/components/slab'
 import { useIsPhone } from '@/hooks/useMediaQuery'
 
 type Project = {
