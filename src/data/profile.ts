@@ -18,7 +18,7 @@ export const profile: Profile = {
   avatarSrc: 'https://jmtechautomation.lovable.app/assets/profile-photo-I-q3nXZ3.jpg',
   verifiedLabel: 'Portfolio owner',
   email: 'jmanueltechai@gmail.com',
-  location: 'Philippines',
+  location: 'Remote collaboration',
   stats: [
     { value: 'Ops', label: 'Leadership', Icon: Briefcase },
     { value: 'AI', label: 'Automation', Icon: SealCheck },
