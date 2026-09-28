@@ -31,7 +31,7 @@ const STAGES: Stage[] = [
   {
     index: '01',
     label: 'Understand',
-    body: 'Learn the current process and the team's needs.',
+    body: 'Learn the current process and the team’s needs.',
     Icon: MagnetStraight,
     chips: ['Process review', 'Clear goals', 'Team input', 'Planning'],
   },
@@ -77,7 +77,7 @@ type Service = {
 }
 
 const BULLETS = ['Reduce repetitive work', 'Keep tasks organized', 'Make progress easier to track']
-const SERVICE_DESC = 'Practical support shaped around your team's goals.'
+const SERVICE_DESC = 'Practical support shaped around your team’s goals.'
 
 const SERVICES: Service[] = [
   {
