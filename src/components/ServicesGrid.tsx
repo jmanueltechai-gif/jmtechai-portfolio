@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 import { MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
 import type { Icon } from '@/components/slab'
-import Autopilot, { TOOLS } from '@/components/Autopilot'
+import { TOOLS } from '@/components/Autopilot'
 
 /**
  * ServicesGrid - the Services view on one glass sheet.
@@ -232,7 +232,15 @@ export default function ServicesGrid() {
             </ul>
           </header>
           <div className="sgrid__flow-main">
-            <Autopilot compact maxScale={1.08} />
+            <figure className="sgrid__workflow-figure">
+              <img
+                src="/projects/job-listing-workflow.png"
+                alt="The n8n Job Listing Tracker workflow, from the scheduled Remotive search through Airtable duplicate checks, Gemini scoring, and saving new listings."
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>The actual n8n workflow used for the Job Listing Tracker.</figcaption>
+            </figure>
           </div>
         </div>
       </div>

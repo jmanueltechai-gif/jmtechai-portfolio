@@ -339,8 +339,7 @@ export default function Autopilot({ compact = false, maxScale = 1 }: AutopilotPr
           Your workflow, end to end.
         </h2>
         <p className="autopilot__intro">
-          PLACEHOLDER - tell me what to put here: two or three sentences walking
-          through this example automation, from the trigger to each outcome.
+          This workflow checks for new remote listings, skips jobs already saved in Airtable, and batches new roles for Gemini scoring.
         </p>
       </header>
       )}
@@ -352,12 +351,12 @@ export default function Autopilot({ compact = false, maxScale = 1 }: AutopilotPr
             <span className="autopilot__dot autopilot__dot--y" />
             <span className="autopilot__dot autopilot__dot--g" />
           </span>
-          <span className="autopilot__titlebar-label">Automation Workflow</span>
+          <span className="autopilot__titlebar-label">Job Listing Tracker · n8n</span>
         </div>
 
         <div className="autopilot__canvas">
           <p className="autopilot__caption">
-            Your flow caption, in one short line.
+            Find listings → Check duplicates → Score matches → Save to Airtable
           </p>
 
           <div className="autopilot__board" aria-hidden="true">
