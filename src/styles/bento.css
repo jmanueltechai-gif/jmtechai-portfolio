@@ -178,19 +178,16 @@
 .bento__photo {
   grid-area: 1 / 1;
   display: block;
-  width: clamp(72px, 5.6vw, 96px);
+  width: clamp(96px, 7vw, 132px);
   aspect-ratio: 3 / 4;
   border-radius: 12px;
   overflow: hidden;
   background: var(--plate);
   box-shadow: 0 0 0 3px var(--white), 0 14px 30px -14px rgba(6, 12, 26, 0.6);
-  transform: rotate(calc((var(--i) - 1) * 9deg)) translateX(calc((var(--i) - 1) * 26px));
   transition: transform var(--dur-slow) var(--ease-spring);
 }
 .bento__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
-.bento__card:hover .bento__photo {
-  transform: rotate(calc((var(--i) - 1) * 14deg)) translateX(calc((var(--i) - 1) * 34px)) translateY(-4px);
-}
+.bento__card:hover .bento__photo { transform: scale(1.035); }
 
 /* Tools: two chip rows scrolling against each other. */
 .bento__chips {
@@ -207,11 +204,9 @@
   display: flex;
   gap: 8px;
   width: max-content;
-  animation: bento-drift-left 26s linear infinite;
-  animation-play-state: paused;
+  animation: bento-drift-left 15s linear infinite;
 }
 .bento__chip-row[data-dir='right'] .bento__chip-track { animation-direction: reverse; }
-.bento__card:hover .bento__chip-track { animation-play-state: running; }
 .bento__chip {
   display: inline-flex;
   align-items: center;
