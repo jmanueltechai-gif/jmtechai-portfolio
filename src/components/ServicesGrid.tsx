@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
+import { Link } from 'react-router-dom'
 import { MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
 import type { Icon } from '@/components/slab'
-import Autopilot, { TOOLS } from '@/components/Autopilot'
 
 /**
  * ServicesGrid - the Services view on one glass sheet.
@@ -13,8 +13,7 @@ import Autopilot, { TOOLS } from '@/components/Autopilot'
  * Projects: the glass, the bento card, plated marks, orange for the index
  * and the accent.
  *
- * Every string below is a Practical support. Replace it, or hand this file to your
- * AI assistant and tell it what to put in each spot.
+ * Service descriptions reflect JM’s operations, marketing, leadership, and automation experience.
  */
 
 /* ---------- The method ---------- */
@@ -31,41 +30,37 @@ const STAGES: Stage[] = [
   {
     index: '01',
     label: 'Understand',
-    body: 'Learn the current process and the team’s needs.',
+    body: 'Get clear on the team’s goals and current process.',
     Icon: MagnetStraight,
-    chips: ['Process review', 'Clear goals', 'Team input', 'Planning'],
+    chips: ['Current workflow', 'Team needs', 'Desired outcome', 'Constraints'],
   },
   {
     index: '02',
     label: 'Improve',
-    body: 'Practical support - one line on what happens in this step.',
+    body: 'Remove friction before adding new tools.',
     Icon: Timer,
-    chips: ['Tag 1', 'Tag 2', 'Tag 3'],
+    chips: ['Simplify handoffs', 'Clarify ownership', 'Reduce repeat work', 'Track progress'],
   },
   {
     index: '03',
     label: 'Automate',
-    body: 'Create a clear, easier-to-manage workflow.',
+    body: 'Connect repeatable steps and keep a person in control.',
     Icon: Trophy,
-    chips: ['Tag 1', 'Tag 2', 'Tag 3'],
+    chips: ['Choose the right tool', 'Connect key steps', 'Add checks', 'Review results'],
   },
+
 ]
 
 /* ---------- The services ---------- */
 
-// Example tool marks from /public/icons. Swap for the tools you actually use.
-const GHL = '/icons/gohighlevel.png'
-const REACT = '/icons/ai/react.svg'
-const TAILWIND = '/icons/ai/tailwindcss.svg'
-const VITE = '/icons/ai/vite.svg'
-const CLOUDFLARE = '/icons/ai/cloudflare.svg'
+// Brand marks for the tools JM uses in these services.
 const N8N = '/icons/ai/n8n.svg'
-const OPENAI = '/icons/openai.svg'
-const GWS = '/icons/googleworkspace.svg'
-const SLACK = '/icons/slack.svg'
-const CLAUDE_CODE = '/icons/claude-code-logo.png'
-const EXPO = '/icons/ai/expo.svg'
-const CHROME = '/icons/ai/googlechrome.svg'
+const MAKE = 'https://cdn.simpleicons.org/make/6D00CC'
+const AIRTABLE = 'https://cdn.simpleicons.org/airtable/18BFFF'
+const ASANA = 'https://cdn.simpleicons.org/asana/F06A6A'
+const LOVABLE = 'https://cdn.simpleicons.org/lovable/FF4F00'
+const ZAPIER = '/icons/ai/zapier.svg'
+const META = 'https://cdn.simpleicons.org/meta/0668E1'
 
 type Service = {
   index: string
@@ -76,49 +71,46 @@ type Service = {
   bullets: string[]
 }
 
-const BULLETS = ['Reduce repetitive work', 'Keep tasks organized', 'Make progress easier to track']
-const SERVICE_DESC = 'Practical support shaped around your team’s goals.'
-
 const SERVICES: Service[] = [
   {
     index: '01',
     title: 'AI & business automation',
-    description: SERVICE_DESC,
-    chip: 'Practical support',
-    logos: [GHL, REACT, TAILWIND],
-    bullets: BULLETS,
+    description: 'Connect repeatable tasks so work moves forward with fewer manual steps.',
+    chip: 'Workflow design',
+    logos: [N8N, MAKE, ZAPIER, AIRTABLE],
+    bullets: ['Automate routine tasks', 'Route information clearly', 'Add review and follow-up steps'],
   },
   {
     index: '02',
     title: 'Operations management',
-    description: SERVICE_DESC,
-    chip: 'Practical support',
-    logos: [GHL, N8N, OPENAI],
-    bullets: BULLETS,
+    description: 'Keep daily responsibilities, client handoffs, and team processes organized.',
+    chip: 'Operational support',
+    logos: [AIRTABLE, ASANA, MAKE],
+    bullets: ['Coordinate daily workflows', 'Document clear ownership', 'Track tasks and progress'],
   },
   {
     index: '03',
     title: 'Team leadership & recruitment',
-    description: SERVICE_DESC,
-    chip: 'Practical support',
-    logos: [GHL, GWS, SLACK],
-    bullets: BULLETS,
+    description: 'Support hiring, onboarding, and communication across distributed teams.',
+    chip: 'People & hiring',
+    logos: [ASANA, AIRTABLE, META],
+    bullets: ['Organize candidate stages', 'Support team onboarding', 'Keep communication moving'],
   },
   {
     index: '04',
-    title: 'Digital marketing',
-    description: SERVICE_DESC,
-    chip: 'Practical support',
-    logos: [REACT, VITE, CLOUDFLARE],
-    bullets: BULLETS,
+    title: 'Digital marketing & communities',
+    description: 'Build engagement through relevant posts, group activity, and lead follow-up.',
+    chip: 'Community growth',
+    logos: [META, ZAPIER, AIRTABLE],
+    bullets: ['Plan useful marketing posts', 'Monitor community activity', 'Identify audience opportunities'],
   },
   {
     index: '05',
     title: 'Process improvement & reporting',
-    description: SERVICE_DESC,
-    chip: 'Practical support',
-    logos: [CLAUDE_CODE, EXPO, CHROME],
-    bullets: BULLETS,
+    description: 'Make work easier to follow and give teams a clearer view of progress.',
+    chip: 'Clearer processes',
+    logos: [ASANA, AIRTABLE, MAKE, LOVABLE],
+    bullets: ['Find process bottlenecks', 'Improve information tracking', 'Share useful progress insights'],
   },
 ]
 
@@ -192,7 +184,7 @@ export default function ServicesGrid() {
         <div className="sgrid__offers">
           <div className="sgrid__offers-head">
             <h2 className="sgrid__offers-title">Ways I can contribute.</h2>
-            <p className="sgrid__offers-sub">Practical support - one short nudge.</p>
+            <p className="sgrid__offers-sub">Support shaped around the work and the team.</p>
           </div>
           <ul className="bento sgrid__services" role="list">
             {SERVICES.map((s) => (
@@ -227,20 +219,26 @@ export default function ServicesGrid() {
               <span className="sgrid__flow-eyebrow">Live automation</span>
               <h2 className="sgrid__flow-title">Job Listing Tracker</h2>
               <p className="sgrid__flow-sub">
-                Practical support - tell me what to put here: one sentence on what this example automation does for a client.
+                A six-hour workflow gathers Remotive listings, checks Airtable for duplicates, scores new jobs with Gemini, and saves them for review.
               </p>
             </div>
             <ul className="sgrid__flow-tools" role="list" aria-label="Tools that power this flow">
-              {TOOLS.map(({ Icon: ToolIcon, label }) => (
-                <li key={label} className="sgrid__flow-tool">
-                  <ToolIcon size={14} weight="duotone" aria-hidden="true" />
-                  <span>{label}</span>
-                </li>
+              {['n8n', 'Remotive API', 'Google Gemini', 'Airtable'].map((tool) => (
+                <li key={tool} className="sgrid__flow-tool"><span>{tool}</span></li>
               ))}
             </ul>
           </header>
           <div className="sgrid__flow-main">
-            <Autopilot compact maxScale={1.08} />
+            <figure className="sgrid__workflow-figure">
+              <img
+                src="/projects/job-listing-workflow.png"
+                alt="JM’s n8n workflow for collecting job listings, checking duplicates in Airtable, scoring new jobs with Gemini, and saving the results"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Actual workflow: scheduled search, duplicate check, batch scoring, and Airtable storage.</figcaption>
+            </figure>
+            <Link className="sgrid__workflow-link" to="/projects">View the full case study <span aria-hidden="true">↗</span></Link>
           </div>
         </div>
       </div>
