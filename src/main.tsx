@@ -11,7 +11,6 @@ import { restorePrefs } from '@/lib/a11y'
 const ProjectsView = lazy(() => import('@/views/ProjectsView'))
 const ServicesView = lazy(() => import('@/views/ServicesView'))
 const ShowcaseView = lazy(() => import('@/views/ShowcaseView'))
-const TestimonialsGrid = lazy(() => import('@/components/TestimonialsGrid'))
 const AboutGrid = lazy(() => import('@/components/AboutGrid'))
 const ContactGrid = lazy(() => import('@/components/ContactGrid'))
 const Privacy = lazy(() => import('@/components/Privacy'))
@@ -33,12 +32,10 @@ import './styles/bento.css'
 import './styles/projects-grid.css'
 import './styles/services-grid.css'
 import './styles/showcase.css'
-import './styles/testimonials-grid.css'
 import './styles/about-grid.css'
 import './styles/contact-grid.css'
 import './styles/boot.css'
 import './styles/credentials.css'
-import './styles/testimonials.css'
 import './styles/mobile-app.css'
 import './styles/a11y.css'
 // Apple design pass - an overlay on everything above; perf.css still wins.
@@ -67,7 +64,6 @@ createRoot(container).render(
           <Route path="/projects" element={<ProjectsView />} />
           <Route path="/services" element={<ServicesView />} />
           <Route path="/showcase" element={<ShowcaseView />} />
-          <Route path="/testimonials" element={<TestimonialsGrid />} />
           <Route path="/about" element={<AboutGrid />} />
           <Route path="/contact" element={<ContactGrid />} />
         </Route>

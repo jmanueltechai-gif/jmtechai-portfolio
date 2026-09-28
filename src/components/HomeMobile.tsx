@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { SealCheck, CaretRight, Play, Stack, Coffee } from '@/components/slab'
+import { SealCheck, CaretRight, Stack, Coffee, EnvelopeSimple } from '@/components/slab'
 import { profile } from '@/data/profile'
 import QuickMenu from './QuickMenu'
 
@@ -10,8 +10,7 @@ import QuickMenu from './QuickMenu'
  *                (theme + accessibility) - the rail's identity block, laid flat
  *   HomeStats    three proof facts (profile.stats), each named by a glyph so
  *                it reads at a glance
- *   HomeExplore  one shelf card per rail view in a snap row, then the first
- *                testimonial as a video stage
+ *   HomeExplore  project, services, showcase, contact, and about tiles
  */
 
 export function HomeProfile() {
@@ -47,10 +46,10 @@ export function HomeStats() {
 }
 
 const TILES = [
-  { n: '01', label: 'Projects', to: '/projects', title: 'Recent work', desc: 'Explore my latest projects.', img: '/placeholders/project-1.jpg' },
+  { n: '01', label: 'Projects', to: '/projects', title: 'Recent work', desc: 'Explore my latest projects.', img: '/projects/receiptiq-preview.svg' },
   { n: '02', label: 'Services', to: '/services', title: 'How I can help', desc: 'Tell me what to put here.', Icon: Stack },
-  { n: '03', label: 'Showcase', to: '/showcase', title: 'ReceiptIQ & job tracker', desc: 'Tell me what to put here.', Icon: Coffee, accent: true },
-  { n: '04', label: 'Testimonials', to: '/testimonials', title: 'My experience', desc: 'Tell me what to put here.', img: '/placeholders/testimonial-1.jpg' },
+  { n: '03', label: 'Showcase', to: '/showcase', title: 'Selected projects', desc: 'See ReceiptIQ and the Job Listing Tracker in context.', Icon: Coffee, accent: true },
+  { n: '04', label: 'Contact', to: '/contact', title: 'Let’s connect', desc: 'Talk about an operations or automation need.', Icon: EnvelopeSimple },
   { n: '05', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'Operations, recruitment, marketing, and automation.', img: profile.avatarSrc },
 ] as const
 
@@ -79,24 +78,21 @@ export function HomeExplore() {
         ))}
       </ul>
 
-      {/* A header that links carries its chevron on the title itself. */}
       <div className="hsec">
         <h2 className="hsec__title">
-          <Link to="/testimonials" className="hsec__link">
-            What I bring
+          <Link to="/projects" className="hsec__link">
+            Project highlights
             <CaretRight size={16} weight="bold" aria-hidden="true" />
           </Link>
         </h2>
       </div>
-      <Link to="/testimonials" className="hproof" aria-label="Client testimonial. A practical mix of operations experience and automation skills.">
+      <Link to="/projects" className="hproof" aria-label="Explore JM Manuel’s project case studies.">
         <span className="hproof__stage">
-          <img src="/placeholders/testimonial-1.jpg" alt="" loading="lazy" />
-          <span className="hproof__play" aria-hidden="true"><Play size={20} weight="fill" /></span>
-          <span className="hproof__dur" aria-hidden="true">0:00</span>
+          <img src="/projects/job-listing-workflow.png" alt="" loading="lazy" />
         </span>
         <span className="hproof__copy">
-          <span className="hproof__title">Operations leadership, recruitment, digital marketing, and a growing focus on AI automation.</span>
-          <span className="hproof__meta">Experience across operations & recruitment</span>
+          <span className="hproof__title">Eight projects across automation, operations, recruitment, and AI.</span>
+          <span className="hproof__meta">Two recent builds and six earlier workflows</span>
         </span>
       </Link>
     </>

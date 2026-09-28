@@ -17,33 +17,6 @@ import * as THREE from 'three'
  * drop-in replacement at the App.tsx import site.
  */
 
-const noiseGLSL = `
-  vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
-  vec4 mod289(vec4 x){return x-floor(x*(1./289.))*289.;}
-  vec4 permute(vec4 x){return mod289(((x*34.)+1.)*x);}
-  vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-.85373472095314*r;}
-  float snoise(vec3 v){
-    const vec2 C=vec2(1./6.,1./3.);const vec4 D=vec4(0.,.5,1.,2.);
-    vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);
-    vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.-g;
-    vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);
-    vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;
-    i=mod289(i);
-    vec4 p=permute(permute(permute(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));
-    float n_=.142857142857;vec3 ns=n_*D.wyz-D.xzx;
-    vec4 j=p-49.*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.*x_);
-    vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.-abs(x)-abs(y);
-    vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);
-    vec4 s0=floor(b0)*2.+1.;vec4 s1=floor(b1)*2.+1.;
-    vec4 sh=-step(h,vec4(0.));
-    vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
-    vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);
-    vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
-    p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;
-    vec4 m=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);m=m*m;
-    return 42.*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));
-  }
-`
 
 const vert = `
   varying vec2 vUv;
@@ -51,85 +24,11 @@ const vert = `
 `
 
 const frag = `
-  uniform float uTime;
-  uniform vec2  uMouse;       // [-1, 1]
-  uniform float uMousePace;   // [0, ~1] eased mouse velocity
-  uniform float uAspect;      // viewport.width / viewport.height
-  uniform float uDarkMix;     // 0 = light/cream, 1 = dark/navy
-  varying vec2 vUv;
-  ${noiseGLSL}
-
-  // Tuning constants. Tune these to taste.
-  // Tuned from full-HD screenshots of landonorris.com - the contours are
-  // BIG sweeping curves (only 2-4 visible across a 1920px viewport), not
-  // dense topographic detail. SCALE drives that.
-  const float SCALE             = 0.72;  // base noise scale - LOWER = larger cells = fewer, sparser blobs across the viewport
-  const float NOISE_DETAIL      = 3.0;   // number of contour bands per noise cell - LOWER = fewer parallel lines (less busy / fewer blobs)
-  const float DISTORT_SCALE     = 0.55;  // size of the slow underlying blobs
-  const float DISTORT_INTENSITY = 0.50;  // how much the slow blobs warp the contours
-  const float HAIRLINE_PIXELS   = 1.5;   // contour line width in screen pixels (fwidth-driven)
-  const float CURSOR_SCALE      = 1.5;   // falloff sharpness around the cursor
-  const float CURSOR_INTENSITY  = 0.05;  // how much the cursor drags contour UVs
-
-  // Near-isotropic noise sampling - contours form in all directions like a
-  // real topographic map. NOT stretched into horizontal stripes.
-  const vec2  ANISOTROPY        = vec2(1.0, 1.0);
-
+  uniform float uDarkMix;
   void main(){
-    // Aspect-corrected UV so contours stay circular at any window ratio.
-    vec2 uv = vUv;
-    uv.x *= uAspect;
-
-    // Mouse in the same UV space as the noise sample.
-    vec2 mouse = uMouse * 0.5 + 0.5;
-    mouse.x *= uAspect;
-    float cursor = 1.0 - distance(mouse, uv) * CURSOR_SCALE;
-    cursor *= uMousePace;
-    cursor = clamp(cursor, 0.0, 1.0);
-
-    // Layer 1: slow, large-scale noise.
-    float noiseDistort = 0.5 + snoise(vec3(uv * DISTORT_SCALE, uTime * 0.1)) * 0.5;
-
-    // Layer 2: low-frequency noise whose UV is warped by layer 1 + the cursor.
-    vec2 warpedUv = (uv + cursor * CURSOR_INTENSITY + noiseDistort * DISTORT_INTENSITY) * SCALE * ANISOTROPY;
-    float n = snoise(vec3(warpedUv, uTime));
-
-    // Multiply by NOISE_DETAIL BEFORE fract() - this is the topographic-map
-    // trick. With NOISE_DETAIL = 1, fract(n) wraps once per noise cell and
-    // produces small closed loops around peaks/valleys. With NOISE_DETAIL = 4,
-    // fract wraps four times per cell, producing FOUR PARALLEL contours that
-    // flow along the noise gradient over long distances - exactly what makes
-    // Lando's lines look like real elevation contours instead of pebbles.
-    float bands = (n * 0.5 + 0.5) * NOISE_DETAIL;
-
-    // Hairline contour lines using GLSL derivatives (fwidth) - resolution
-    // independent. fwidth(bands) tracks per-pixel change in bands, so the
-    // line stays HAIRLINE_PIXELS thick regardless of NOISE_DETAIL or SCALE.
-    float contour = fract(bands);
-    float dist    = abs(contour - 0.5);
-    float w       = fwidth(bands) * HAIRLINE_PIXELS * 0.5;
-    float line    = 1.0 - smoothstep(0.0, w, dist);
-
-    // Theme colors (kept identical to v1 so the rest of the page does not shift).
-    vec3 bgLight   = vec3(0.957, 0.957, 0.929); // #F4F4ED cream
-    vec3 lineLight = vec3(0.46,  0.46,  0.46);  // soft neutral gray contour on cream
-    vec3 bgDark    = vec3(0.024, 0.047, 0.102); // #060C1A navy ink
-    vec3 lineDark  = vec3(1.0,   1.0,   1.0);   // solid white on navy (black would be invisible)
-
-    vec3 bg      = mix(bgLight, bgDark, uDarkMix);
-    vec3 lineCol = mix(lineLight, lineDark, uDarkMix);
-
-    // Tiny cursor-velocity highlight so flicks leave a faint glow.
-    lineCol += cursor * 0.04;
-
-    // Line opacity: soft, tonal beige hairlines - lower alpha so
-    // the contours read as a warm beige tint rather than stark black. The lower
-    // contrast also hides most of the half-res upscale aliasing. Dark sections
-    // use white lines on navy, kept legible at a similar low alpha.
-    float lineAlpha = line * mix(0.55, 0.45, uDarkMix);
-    vec3 color = mix(bg, lineCol, lineAlpha);
-
-    gl_FragColor = vec4(color, 1.0);
+    vec3 bgLight = vec3(0.957, 0.957, 0.929);
+    vec3 bgDark  = vec3(0.024, 0.047, 0.102);
+    gl_FragColor = vec4(mix(bgLight, bgDark, uDarkMix), 1.0);
   }
 `
 
@@ -298,5 +197,36 @@ export default function HeroCanvasV2() {
     }
   }, [])
 
-  return <div ref={ref} className="hero-canvas" aria-hidden="true" />
+  return (
+    <div ref={ref} className="hero-canvas" aria-hidden="true">
+      <svg className="hero-network" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        <g className="hero-network__wires">
+          <path d="M110 196 H320 C350 196 350 210 380 210 H580 C610 210 610 190 640 190 H820" />
+          <path d="M580 210 C620 210 620 300 660 300 H900 C930 300 930 280 960 280 H1220" />
+          <path d="M250 500 H470 C500 500 500 470 530 470 H740 C770 470 770 500 800 500 H1030" />
+          <path d="M820 190 C870 190 870 130 920 130 H1150" />
+          <path d="M470 500 C520 500 520 590 570 590 H780 C810 590 810 560 840 560 H1110" />
+        </g>
+        <g className="hero-network__flow">
+          <path d="M110 196 H320 C350 196 350 210 380 210 H580 C610 210 610 190 640 190 H820" />
+          <path d="M580 210 C620 210 620 300 660 300 H900 C930 300 930 280 960 280 H1220" />
+          <path d="M250 500 H470 C500 500 500 470 530 470 H740 C770 470 770 500 800 500 H1030" />
+          <path d="M820 190 C870 190 870 130 920 130 H1150" />
+          <path d="M470 500 C520 500 520 590 570 590 H780 C810 590 810 560 840 560 H1110" />
+        </g>
+        <g className="hero-network__nodes">
+          <g transform="translate(70 172)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(340 186)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(600 166)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(780 106)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(620 276)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(920 256)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(210 476)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(490 446)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(760 476)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(800 536)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+        </g>
+      </svg>
+    </div>
+  )
 }

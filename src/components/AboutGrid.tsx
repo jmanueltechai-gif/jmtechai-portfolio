@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { ArrowUpRight, MapPin } from '@/components/slab'
+import { Briefcase, Globe, Robot } from '@/components/slab'
 import { profile } from '@/data/profile'
 
 /**
@@ -15,19 +15,12 @@ import { profile } from '@/data/profile'
  */
 
 const N8N = { src: '/icons/ai/n8n.svg', name: 'n8n' }
+const MAKE = { src: 'https://cdn.simpleicons.org/make/6D00CC', name: 'Make' }
+const AIRTABLE = { src: 'https://cdn.simpleicons.org/airtable/18BFFF', name: 'Airtable' }
+const ASANA = { src: 'https://cdn.simpleicons.org/asana/F06A6A', name: 'Asana' }
 const ZAPIER = { src: '/icons/ai/zapier.svg', name: 'Zapier' }
-const DOCKER = { src: '/icons/ai/docker.svg', name: 'Docker' }
-const CLAUDE = { src: '/icons/ai/claude-color.svg', name: 'Claude' }
-const CODEX = { src: '/icons/ai/codex.svg', name: 'Codex' }
-const GLM = { src: '/icons/ai/zhipu.svg', name: 'GLM' }
-const QWEN = { src: '/icons/ai/qwen.svg', name: 'Qwen' }
-const HERMES = { src: '/icons/ai/hermes.svg', name: 'Hermes' }
-const NAMECHEAP = { src: '/icons/ai/namecheap.svg', name: 'Namecheap' }
-const CLOUDFLARE = { src: '/icons/ai/cloudflare.svg', name: 'Cloudflare' }
-const GITHUB = { src: '/icons/ai/github.svg', name: 'GitHub' }
-const GWS = { src: '/icons/googleworkspace.svg', name: 'Google Workspace' }
-const SLACK = { src: '/icons/ai/slack-color.svg', name: 'Slack' }
-const FIREFLIES = { src: '/icons/ai/fireflies.png', name: 'Fireflies' }
+const META = { src: 'https://cdn.simpleicons.org/meta/0668E1', name: 'Meta' }
+const LOVABLE = { src: 'https://cdn.simpleicons.org/lovable/FF4F00', name: 'Lovable' }
 
 type Capability = {
   index: string
@@ -36,50 +29,34 @@ type Capability = {
 }
 
 const CAPABILITIES: Capability[] = [
-  {
-    index: '01',
-    title: 'AI & business automation',
-    marks: [N8N, ZAPIER, DOCKER],
-  },
-  {
-    index: '02',
-    title: 'Operations management',
-    marks: [CLAUDE, CODEX, GLM, QWEN, HERMES],
-  },
-  {
-    index: '03',
-    title: 'Team leadership & recruitment',
-    marks: [CLAUDE, CODEX, NAMECHEAP, CLOUDFLARE, GITHUB],
-  },
-  {
-    index: '04',
-    title: 'Digital marketing & reporting',
-    marks: [GWS, SLACK, FIREFLIES],
-  },
+  { index: '01', title: 'AI & business automation', marks: [N8N, MAKE, ZAPIER, LOVABLE] },
+  { index: '02', title: 'Operations & workflow coordination', marks: [AIRTABLE, ASANA, MAKE] },
+  { index: '03', title: 'Community management & marketing', marks: [META, AIRTABLE] },
+  { index: '04', title: 'Team coordination & reporting', marks: [ASANA, ZAPIER, AIRTABLE] },
 ]
 
 export default function AboutGrid() {
   return (
-    <section className="pgrid agrid" aria-labelledby="about-title">
+    <section className="pgrid agrid pgrid--scroll" aria-labelledby="about-title">
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">About</span>
         <h1 className="pgrid__title" id="about-title">
           {`Hi, I’m ${profile.firstName}.`}
         </h1>
         <p className="pgrid__lede">
-          I bring hands-on experience in operations, marketing, recruitment, and team leadership.
+          My background spans operations leadership, recruitment, digital marketing, community management, and practical automation.
         </p>
       </header>
 
       <div className="home__glass agrid__glass">
         <div className="agrid__copy">
           <p className="agrid__lead">
-            I help teams make work easier to manage.
-            <span> By improving processes and adding useful automation.</span>
+            I bring operations experience and practical automation together.
+            <span> My work also includes recruitment, digital marketing, and global student communities.</span>
           </p>
 
           <p className="agrid__note">
-            I recently spent five months (May–September 2026) as a Facebook Community Manager and AI Automation Specialist. I managed the business’s own and hosted Facebook groups, created marketing posts, and handled admin tasks. I researched student groups in cities worldwide; maintained lead databases in Sheets, Excel, and the company CRM; engaged members, guided them toward TSL platforms, and promoted TSL communities, events, and housing; monitored growth opportunities; worked with the Philippines-based Facebook Marketing Team; and introduced AI tools and automations to improve team workflows.
+            In my latest five-month role (May–September 2026), I managed the business’s Facebook groups, shared marketing posts, and handled admin tasks. I researched student communities worldwide, kept lead information organized, engaged members, promoted TSL communities and housing initiatives, and worked with the Philippines-based marketing team. I also introduced AI tools and automations to improve team workflows.
           </p>
 
           <ul className="agrid__caps" role="list">
@@ -108,7 +85,7 @@ export default function AboutGrid() {
           <div className="agrid__bar">
             <span className="agrid__cell">
               <span className="agrid__cell-mark agrid__cell-mark--img">
-                <img src="/placeholders/badge.svg" alt="" loading="lazy" decoding="async" />
+                <Briefcase size={18} weight="duotone" aria-hidden="true" />
               </span>
               <span className="agrid__cell-copy">
                 <span className="agrid__cell-title">Facebook Community Manager & AI Automation Specialist</span>
@@ -118,24 +95,23 @@ export default function AboutGrid() {
 
             <span className="agrid__cell">
               <span className="agrid__cell-mark">
-                <MapPin size={16} weight="fill" aria-hidden="true" />
+                <Globe size={18} weight="duotone" aria-hidden="true" />
               </span>
               <span className="agrid__cell-copy">
-                <span className="agrid__cell-title">{profile.location}</span>
-                <span className="agrid__cell-meta">Remote collaboration</span>
+                <span className="agrid__cell-title">Global community work</span>
+                <span className="agrid__cell-meta">Student groups across multiple cities</span>
               </span>
             </span>
 
-            <a className="agrid__cell agrid__cell--wide" href="#">
+            <span className="agrid__cell agrid__cell--wide">
               <span className="agrid__cell-mark agrid__cell-mark--plain">
-                <img src="/placeholders/logo.svg" alt="" loading="lazy" decoding="async" />
+                <Robot size={18} weight="duotone" aria-hidden="true" />
               </span>
               <span className="agrid__cell-copy">
                 <span className="agrid__cell-title">AI & automation</span>
-                <span className="agrid__cell-meta">Ongoing learning</span>
+                <span className="agrid__cell-meta">n8n · Make · Airtable · Zapier</span>
               </span>
-              <ArrowUpRight className="agrid__cell-go" size={15} weight="bold" aria-hidden="true" />
-            </a>
+            </span>
           </div>
         </div>
 

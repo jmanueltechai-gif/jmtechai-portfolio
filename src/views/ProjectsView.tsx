@@ -1,9 +1,8 @@
 import ProjectsGrid from '@/components/ProjectsGrid'
 
 /**
- * Projects is a fixed viewport like Home: six cards, one per body of work,
- * each opening the real section in a dialog. No ViewShell - there is no
- * scrolling stack here and the reveal hooks would have nothing to reveal.
+ * Projects shows recent work and earlier portfolio projects in a scrollable grid.
+ * Each card opens a short case study, with a live demo link for ReceiptIQ.
  */
 export default function ProjectsView() {
   return <ProjectsGrid />

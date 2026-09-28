@@ -7,16 +7,13 @@ import {
   Robot,
   Medal,
   Stack,
-  Quotes,
   FunnelSimple,
   Gear,
   AddressBook,
   Globe,
   AppWindow,
-  SealCheck,
 } from '@/components/slab'
-import { gymFunnel, bookingFunnel, websiteFunnel, type Funnel } from '@/data/funnels'
-import { aiStack, type StackNode } from '@/data/ai-stack'
+import { aiStack } from '@/data/ai-stack'
 import { profile } from '@/data/profile'
 
 /**
@@ -29,11 +26,15 @@ import { profile } from '@/data/profile'
  * height and Home stays a single viewport.
  */
 
-const thumbSrc = (f: Funnel) =>
-  `/home/${f.dir ?? 'funnels'}-${f.file.replace('.html', '.jpeg')}`
-
-const PROJECT_SHOTS = [gymFunnel[0], bookingFunnel[0], websiteFunnel[0], gymFunnel[1]].filter(Boolean)
-
+const PROJECT_SHOTS = [
+  'https://jmtechautomation.lovable.app/assets/project-1-CKUT4pWa.png',
+  'https://jmtechautomation.lovable.app/assets/project-2-Bt3bzDYm.png',
+  'https://jmtechautomation.lovable.app/assets/project-3-EkJPV2UP.png',
+  'https://jmtechautomation.lovable.app/assets/project-4-DA-tUzps.png',
+  'https://jmtechautomation.lovable.app/assets/project-5-1-CTADJPzH.png',
+  'https://jmtechautomation.lovable.app/assets/project-6-U4R_ipAk.png',
+  '/projects/job-listing-workflow.png',
+]
 const OFFERS = [
   { Icon: FunnelSimple, title: 'AI & business automation', note: 'Practical workflows that save time and keep work organized.' },
   { Icon: Gear, title: 'Operations management', note: 'Practical support shaped around your team’s goals.' },
@@ -42,19 +43,20 @@ const OFFERS = [
   { Icon: AppWindow, title: 'Process improvement', note: 'Practical support shaped around your team’s goals.' },
 ] as const
 
-const CLIENTS = [
-  { name: 'ReceiptIQ', role: 'Expense and receipt tracker', work: 'AI · Reports · Web app' },
-  { name: 'Job Listing Tracker', role: 'Automated job discovery workflow', work: 'n8n · Airtable · Gemini' },
-  { name: 'Operations background', role: 'Leadership and process improvement', work: 'Operations · Recruitment · Marketing' },
+type ClientCard = { name: string; role: string; work: string }
+
+const CLIENTS: ClientCard[] = [
+  { name: 'ReceiptIQ', role: 'AI receipt and expense app', work: 'Receipt capture · Reports' },
+  { name: 'Job Listing Tracker', role: 'Automated job discovery', work: 'n8n · Airtable · Gemini' },
+  { name: 'Lead Enrichment Pipeline', role: 'Lead scoring and routing', work: 'Zapier · Apollo.io · Sheets' },
+  { name: 'Financial Reconciliation', role: 'Transaction-to-accounting workflow', work: 'Make · Asana · Xero' },
+  { name: 'Healthcare Hiring Pipeline', role: 'Candidate journey automation', work: 'Make · Forms · Sheets' },
+  { name: 'CRM Lead Engagement', role: 'Lead follow-up and pipeline updates', work: 'Zapier · Asana · Gmail' },
+  { name: 'Lead Qualification & Booking', role: 'Consultation routing and scheduling', work: 'GoHighLevel · Calendar' },
+  { name: 'Lead Nurture Sequence', role: 'New-contact follow-up workflow', work: 'GoHighLevel · Email · SMS' },
 ]
 
-// Three photos of you, fanned. Small copies are fine - the fan shows them under 100px.
-const PHOTOS = [profile.avatarSrc, '/avatar.svg?2', '/avatar.svg?3']
-
-/** The AI systems as a flat list: every leaf of the Projects tree, in order. */
-const leaves = (n: StackNode): StackNode[] =>
-  n.children?.length ? n.children.flatMap(leaves) : [n]
-const AI_BUILDS = leaves(aiStack)
+const AI_BUILDS = aiStack.children ?? []
 
 function CardHead({
   Icon,
@@ -92,7 +94,7 @@ export default function HomeBento() {
           <div className="bento__reel-track">
             {[...PROJECT_SHOTS, ...PROJECT_SHOTS].map((f, i) => (
               <span key={i} className="bento__shot">
-                <img src={thumbSrc(f)} alt="" loading="lazy" decoding="async" />
+                <img src={f} alt="" loading="lazy" decoding="async" />
               </span>
             ))}
           </div>
@@ -103,11 +105,9 @@ export default function HomeBento() {
       <Link to="/about" className="bento__card bento__card--about">
         <CardHead Icon={User} title="About" desc="Operations leader building practical business automations." />
         <div className="bento__media bento__fan" aria-hidden="true">
-          {PHOTOS.map((src, i) => (
-            <span key={src} className="bento__photo" style={{ ['--i' as string]: i }}>
-              <img src={src} alt="" loading="lazy" decoding="async" />
-            </span>
-          ))}
+          <span className="bento__photo">
+            <img src={profile.avatarSrc} alt="" loading="lazy" decoding="async" />
+          </span>
         </div>
       </Link>
 
@@ -133,14 +133,14 @@ export default function HomeBento() {
 
       {/* Credentials: the badge that matters, on its plate. */}
       <Link to="/about" className="bento__card bento__card--creds">
-        <CardHead Icon={Medal} title="Experience" desc="Operations, recruitment, and digital marketing experience." />
+        <CardHead Icon={Medal} title="Experience" desc="Experience across operations, recruitment, marketing, and community work." />
         <div className="bento__media bento__badge" aria-hidden="true">
           <span className="bento__badge-ring">
-            <img src="/placeholders/badge.svg" alt="" width={72} height={72} />
+            <Medal size={42} weight="duotone" aria-hidden="true" />
           </span>
           <span className="bento__badge-tag">
-            <SealCheck size={14} weight="fill" />
-            Operations & Leadership
+            <Stack size={14} weight="duotone" />
+            Operations · Community · Automation
           </span>
         </div>
       </Link>
@@ -166,19 +166,15 @@ export default function HomeBento() {
         </ul>
       </Link>
 
-      {/* Testimonials: client cards drifting up a clipped column. */}
-      <Link to="/testimonials" className="bento__card bento__card--quotes">
-        <CardHead Icon={Quotes} title="Recent work" desc="Two recent projects: ReceiptIQ and the Job Listing Tracker." />
+      {/* Recent work: project cards drifting up a clipped column. */}
+      <Link to="/projects" className="bento__card bento__card--quotes">
+        <CardHead Icon={FolderOpen} title="Recent work" desc="Selected projects in AI, automation, and operations." />
         <div className="bento__media bento__reviews" aria-hidden="true">
           <div className="bento__reviews-track">
             {[...CLIENTS, ...CLIENTS].map((c, i) => (
               <span key={i} className="bento__review">
                 <span className="bento__review-top">
-                  {c.logo ? (
-                    <img src={c.logo} alt="" width={18} height={18} />
-                  ) : (
-                    <Quotes size={14} weight="fill" />
-                  )}
+                  <FolderOpen size={14} weight="duotone" />
                   <b>{c.name}</b>
                 </span>
                 <span className="bento__review-role">{c.role}</span>
