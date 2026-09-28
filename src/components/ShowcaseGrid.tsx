@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom'
-import { ArrowUpRight } from '@/components/slab'
+import { ArrowUpRight, Ticket } from '@/components/slab'
 
 const HIGHLIGHTS = [
   {
     title: 'ReceiptIQ',
     label: 'AI expense & receipt tracker',
     description: 'A mobile-friendly app that reads receipt details, organizes expenses, and creates downloadable reports.',
-    image: '/projects/receiptiq-preview.svg',
-    imageAlt: 'Illustrated preview of the ReceiptIQ expense dashboard',
     href: 'https://aireceipt.lovable.app',
     action: 'Open the live demo',
     external: true,
@@ -39,7 +37,15 @@ export default function ShowcaseGrid() {
         <div className="showcase-projects">
           {HIGHLIGHTS.map((item) => (
             <article className="showcase-project" key={item.title}>
-              <img className="showcase-project__image" src={item.image} alt={item.imageAlt} loading="lazy" decoding="async" />
+              {item.image ? (
+                <img className="showcase-project__image" src={item.image} alt={item.imageAlt ?? ''} loading="lazy" decoding="async" />
+              ) : (
+                <div className="showcase-project__preview" aria-label="ReceiptIQ app preview">
+                  <Ticket size={42} weight="duotone" aria-hidden="true" />
+                  <strong>ReceiptIQ</strong>
+                  <span>Expenses · Insights · Reports</span>
+                </div>
+              )}
               <div className="showcase-project__copy">
                 <span className="showcase-project__label">{item.label}</span>
                 <h2>{item.title}</h2>
