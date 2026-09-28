@@ -8,8 +8,8 @@ import type { Icon } from '@/components/slab'
  *
  * Three bands, top to bottom: your three-step method (on a dark plate so it
  * is the first thing the eye lands on), the five services as cards that carry
- * the marks of what each one is built with, and the live automation demo
- * scaled into whatever height is left. Same object language as Home and
+ * the marks of what each one is built with, and the real workflow screenshot
+ * scaled to fit the page. Same object language as Home and
  * Projects: the glass, the bento card, plated marks, orange for the index
  * and the accent.
  *
