@@ -10,7 +10,8 @@ type Project = {
   category: 'apps' | 'automation'
   Icon: ComponentType<{ size?: number }>
   tools: string[]
-  CaseStudy: ComponentType
+  CaseStudy: ReactNode
+  thumbnail?: string
 }
 
 const PROJECTS: Project[] = [
@@ -20,18 +21,75 @@ const PROJECTS: Project[] = [
     description: 'Turns receipt photos into organized expense records, spending insights, and downloadable reports.',
     category: 'apps',
     Icon: Ticket,
-    tools: ['AI', 'PDF & CSV reports'],
-    CaseStudy: ReceiptIQCaseStudy,
+    tools: ['Lovable', 'Gemini AI', 'PDF & CSV reports'],
+    thumbnail: '/projects/receiptiq-preview.svg',
+    CaseStudy: <ReceiptIQCaseStudy />,
   },
   {
     id: 'job-tracker',
     title: 'Automated Job Listing Tracker',
-    description: 'Collects remote job listings, checks for existing records, and scores matches for recruiters and independent freelancers.',
+    description: 'Collects remote job listings, checks for duplicates, and scores matches for recruiters and independent freelancers.',
     category: 'automation',
     Icon: Robot,
     tools: ['n8n', 'Airtable', 'Gemini'],
-    CaseStudy: JobTrackerCaseStudy,
+    thumbnail: '/projects/job-listing-workflow.png',
+    CaseStudy: <JobTrackerCaseStudy />,
   },
+  {
+    id: 'lead-enrichment',
+    title: 'Autonomous Lead Enrichment & Scoring Pipeline',
+    description: 'Enriches incoming leads, scores them against business criteria, and routes follow-up by fit.',
+    category: 'automation',
+    Icon: Robot,
+    tools: ['Zapier', 'Apollo.io', 'Google Sheets', 'Slack'],
+    CaseStudy: <LegacyCaseStudy title="Autonomous Lead Enrichment & Scoring Pipeline" subtitle="A lead workflow that adds useful context to form submissions and helps teams prioritize follow-up." details={['Connects submitted forms with Apollo.io for contact enrichment.', 'Applies a custom score and routes enterprise and small-business leads separately.', 'Records lead details in Google Sheets and sends Slack notifications.']} tools="Zapier, Apollo.io, Google Sheets, and Slack" />,
+  },
+  {
+    id: 'financial-reconciliation',
+    title: 'Automated Financial Reconciliation Pipeline',
+    description: 'Moves transaction information from project tracking into accounting records with less manual entry.',
+    category: 'automation',
+    Icon: Stack,
+    tools: ['Make', 'Asana', 'Xero', 'Google Sheets'],
+    CaseStudy: <LegacyCaseStudy title="Automated Financial Reconciliation Pipeline" subtitle="A workflow designed to keep transaction details consistent as they move from project work into accounting." details={['Moves relevant transaction data from project tracking toward accounting.', 'Reduces repeated manual entry between tools.', 'Keeps a clearer record for review and reporting.']} tools="Make, Asana, Xero, and Google Sheets" />,
+  },
+  {
+    id: 'healthcare-hiring',
+    title: 'Automated Healthcare Hiring Pipeline',
+    description: 'Organizes candidate steps from application through status updates for a healthcare practice.',
+    category: 'automation',
+    Icon: Stack,
+    tools: ['Make', 'Google Forms', 'Gmail', 'Slack'],
+    CaseStudy: <LegacyCaseStudy title="Automated Healthcare Hiring Pipeline" subtitle="A multi-step hiring workflow for a healthcare practice, designed to make candidate progress easier to follow." details={['Captures new applications through a form.', 'Moves candidate information through a structured hiring process.', 'Shares status updates with the team as candidates progress.']} tools="Make, Google Forms, Gmail, Slack, and Google Sheets" />,
+  },
+  {
+    id: 'crm-engagement',
+    title: 'Automated CRM Lead Engagement & Pipeline Orchestration',
+    description: 'Organizes lead follow-up and moves active prospects through a clear engagement pipeline.',
+    category: 'automation',
+    Icon: Robot,
+    tools: ['Zapier', 'Asana', 'Gmail', 'Google Drive'],
+    CaseStudy: <LegacyCaseStudy title="Automated CRM Lead Engagement & Pipeline Orchestration" subtitle="A lead-engagement workflow built to make sure high-priority prospects receive timely, organized follow-up." details={['Tracks prospects as they move from new lead to active engagement.', 'Creates follow-up tasks and keeps supporting information together.', 'Helps the team respond consistently to higher-priority prospects.']} tools="Zapier, Asana, Gmail, Google Drive, and AI by Zapier" />,
+  },
+  {
+    id: 'lead-booking',
+    title: 'Automated Lead Qualification & Booking Pipeline',
+    description: 'Routes consultation requests by need and supports the booking journey through follow-up.',
+    category: 'automation',
+    Icon: Robot,
+    tools: ['GoHighLevel', 'Forms', 'Calendar'],
+    CaseStudy: <LegacyCaseStudy title="Automated Lead Qualification & Booking Pipeline" subtitle="A 20-plus-step GoHighLevel workflow for capturing consultation requests and guiding each lead toward the right next step." details={['Routes requests by service type, including consultation, general inquiry, and project quote.', 'Sends a calendar link, checks booking status, and follows up when needed.', 'Updates the CRM stage as the lead moves through the process.']} tools="GoHighLevel, forms, calendar, CRM pipeline, and email automation" />,
+  },
+  {
+    id: 'lead-nurture',
+    title: 'Automated Lead Nurture Sequence',
+    description: 'Welcomes new contacts, organizes them in the CRM, and creates a clear follow-up task.',
+    category: 'automation',
+    Icon: Robot,
+    tools: ['GoHighLevel', 'Email', 'SMS'],
+    CaseStudy: <LegacyCaseStudy title="Automated Lead Nurture Sequence" subtitle="A seven-step follow-up workflow that starts when a new contact enters the CRM." details={['Sends a personalized first response after a short delay and notifies the team.', 'Adds a new-lead tag and creates an opportunity in the pipeline.', 'Assigns a follow-up task so the next action is easy to find.']} tools="GoHighLevel, email, SMS, CRM pipeline, and task management" />,
+  },
+
 ]
 
 function StoryFrame({ title, subtitle, link, children }: {
@@ -154,6 +212,24 @@ function ReceiptIQCaseStudy() {
   )
 }
 
+function LegacyCaseStudy({ title, subtitle, details, tools }: {
+  title: string
+  subtitle: string
+  details: string[]
+  tools: string
+}) {
+  return (
+    <StoryFrame title={title} subtitle={subtitle}>
+      <CaseSection title="What the workflow does">
+        <ul>{details.map((detail) => <li key={detail}>{detail}</li>)}</ul>
+      </CaseSection>
+      <CaseSection title="Tools">
+        <p>{tools}</p>
+      </CaseSection>
+    </StoryFrame>
+  )
+}
+
 function ProjectModal({ project, onClose, children }: { project: Project; onClose: () => void; children: ReactNode }) {
   const closeRef = useRef<HTMLButtonElement>(null)
   useEffect(() => {
@@ -197,11 +273,11 @@ export default function ProjectsGrid() {
   }, [])
 
   return (
-    <section className="pgrid" aria-labelledby="projects-title">
+    <section className="pgrid pgrid--scroll" aria-labelledby="projects-title">
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">Projects</span>
         <h1 className="pgrid__title" id="projects-title">Practical systems for smoother work.</h1>
-        <p className="pgrid__lede">Recent work in expense tracking and job discovery. Open a project to see the details.</p>
+        <p className="pgrid__lede">Explore recent AI and automation work alongside earlier projects in operations, recruitment, and lead management.</p>
       </header>
 
       {phone && (
@@ -225,7 +301,7 @@ export default function ProjectsGrid() {
       )}
 
       <div className="home__glass pgrid__glass">
-        <span className="pgrid__hint" aria-hidden="true"><CursorClick size={14} weight="duotone" />Click a project to open its case study</span>
+        <span className="pgrid__hint" aria-hidden="true"><CursorClick size={14} weight="duotone" />Select a project to read its case study</span>
         <div className="bento bento--projects">
           {projects.map((project) => (
             <button
@@ -236,7 +312,9 @@ export default function ProjectsGrid() {
               aria-haspopup="dialog"
             >
               <span className="bento__build-plate">
-                <project.Icon size={22} />
+                {project.thumbnail
+                  ? <img src={project.thumbnail} alt="" loading="lazy" decoding="async" />
+                  : <project.Icon size={22} />}
               </span>
               <span className="bento__build-text">
                 <span className="bento__kicker">{project.tools.join(' · ')}</span>
@@ -251,7 +329,7 @@ export default function ProjectsGrid() {
 
       {open && (
         <ProjectModal project={open} onClose={close}>
-          <open.CaseStudy />
+          {open.CaseStudy}
         </ProjectModal>
       )}
     </section>
