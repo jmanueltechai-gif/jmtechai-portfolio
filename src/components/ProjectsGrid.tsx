@@ -22,6 +22,7 @@ const PROJECTS: Project[] = [
     category: 'apps',
     Icon: Ticket,
     tools: ['Lovable', 'Gemini AI', 'PDF & CSV reports'],
+    thumbnail: '/projects/receiptiq-dashboard.png',
     CaseStudy: <ReceiptIQCaseStudy />,
   },
   {
@@ -209,6 +210,16 @@ function ReceiptIQCaseStudy() {
           <li>Creates PDF and CSV reports for download.</li>
           <li>Lets users review and correct extracted details.</li>
         </ul>
+      </CaseSection>
+      <CaseSection title="App screenshots">
+        <figure style={{ margin: '20px 0' }}>
+          <img src="/projects/receiptiq-dashboard.png" alt="ReceiptIQ dashboard with spending totals, category breakdown, and recent receipts" loading="lazy" style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 14, border: '1px solid #d7d9d2' }} />
+          <figcaption style={{ marginTop: 8, fontSize: 14, opacity: .75 }}>Dashboard overview of spending totals, categories, and recent receipts.</figcaption>
+        </figure>
+        <figure style={{ margin: '20px 0' }}>
+          <img src="/projects/receiptiq-analytics.png" alt="ReceiptIQ analytics page showing spending by category, daily spending, and monthly totals" loading="lazy" style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 14, border: '1px solid #d7d9d2' }} />
+          <figcaption style={{ marginTop: 8, fontSize: 14, opacity: .75 }}>Analytics detail with category and time-based spending views.</figcaption>
+        </figure>
       </CaseSection>
       <CaseSection title="Tools">
         <p>React, TypeScript, Tailwind CSS, Lovable Cloud, and Google Gemini. The live demo uses sample data.</p>

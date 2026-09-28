@@ -17,6 +17,8 @@ const HIGHLIGHTS: Highlight[] = [
     title: 'ReceiptIQ',
     label: 'AI expense & receipt tracker',
     description: 'A mobile-friendly app that reads receipt details, organizes expenses, and creates downloadable reports.',
+    image: '/projects/receiptiq-analytics.png',
+    imageAlt: 'ReceiptIQ analytics page showing spending by category and daily spending',
     href: 'https://aireceipt.lovable.app',
     action: 'Open the live demo',
     external: true,
