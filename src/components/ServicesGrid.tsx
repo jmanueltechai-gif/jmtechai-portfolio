@@ -2,13 +2,14 @@ import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
 import type { Icon } from '@/components/slab'
+import Autopilot, { TOOLS } from '@/components/Autopilot'
 
 /**
  * ServicesGrid - the Services view on one glass sheet.
  *
  * Three bands, top to bottom: your three-step method (on a dark plate so it
  * is the first thing the eye lands on), the five services as cards that carry
- * the marks of what each one is built with, and the real workflow screenshot
+ * the marks of what each one is built with, and an animated illustration of the actual workflow
  * scaled to fit the page. Same object language as Home and
  * Projects: the glass, the bento card, plated marks, orange for the index
  * and the accent.
@@ -223,22 +224,16 @@ export default function ServicesGrid() {
               </p>
             </div>
             <ul className="sgrid__flow-tools" role="list" aria-label="Tools that power this flow">
-              {['n8n', 'Remotive API', 'Google Gemini', 'Airtable'].map((tool) => (
-                <li key={tool} className="sgrid__flow-tool"><span>{tool}</span></li>
+              {TOOLS.map(({ Icon: ToolIcon, label }) => (
+                <li key={label} className="sgrid__flow-tool">
+                  <ToolIcon size={14} weight="duotone" aria-hidden="true" />
+                  <span>{label}</span>
+                </li>
               ))}
             </ul>
           </header>
           <div className="sgrid__flow-main">
-            <figure className="sgrid__workflow-figure">
-              <img
-                src="/projects/job-listing-workflow.png"
-                alt="JM’s n8n workflow for collecting job listings, checking duplicates in Airtable, scoring new jobs with Gemini, and saving the results"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Actual workflow: scheduled search, duplicate check, batch scoring, and Airtable storage.</figcaption>
-            </figure>
-            <Link className="sgrid__workflow-link" to="/projects">View the full case study <span aria-hidden="true">↗</span></Link>
+            <Autopilot compact maxScale={1.08} />
           </div>
         </div>
       </div>
