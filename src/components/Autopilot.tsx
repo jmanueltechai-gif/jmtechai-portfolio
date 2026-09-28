@@ -3,18 +3,14 @@ import gsap from 'gsap'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import {
   Lightning,
-  EnvelopeSimple,
   CalendarCheck,
   Clock,
-  BellRinging,
-  VideoCamera,
   FileText,
-  Trophy,
-  XCircle,
-  Hourglass,
-  Heart,
   Plug,
   Sparkle,
+  Stack,
+  MagnifyingGlass,
+  FunnelSimple,
 } from '@/components/slab'
 import type { Icon } from '@/components/slab'
 
@@ -50,46 +46,39 @@ type FlowNode = {
 // x,y = top-left of the node box on the 1000x372 canvas (mirrors the flowchart).
 // Two tiers: the chain across the top, the outcomes fanning out just below.
 const NODES: FlowNode[] = [
-  // top chain
-  { id: 'n-form',     Icon: Lightning,     title: 'Trigger',        subtitle: 'Form submitted',    x: 6,   y: 36,  variant: 'trigger' },
-  { id: 'n-email',    Icon: EnvelopeSimple, title: 'Send Email',    subtitle: 'Action',            x: 176, y: 36 },
-  { id: 'n-booked',   Icon: CalendarCheck, title: 'Update CRM',     subtitle: 'Action',            x: 346, y: 36 },
-  { id: 'n-24hr',     Icon: Clock,         title: 'Wait',           subtitle: 'Delay step',        x: 516, y: 36 },
-  { id: 'n-1hr',      Icon: BellRinging,   title: 'Reminder',       subtitle: 'Email & SMS',       x: 686, y: 36 },
-  { id: 'n-call',     Icon: VideoCamera,   title: 'Decision',       subtitle: 'Condition gate',    x: 866, y: 36, variant: 'gate' },
-  // outcomes (one tier, fanning out of the decision gate)
-  { id: 'n-proposal', Icon: FileText,      title: 'Outcome A',      subtitle: 'Next action',       x: 56,  y: 268 },
-  { id: 'n-won',      Icon: Trophy,        title: 'Won',            subtitle: 'Goal reached',      x: 240, y: 268, variant: 'win' },
-  { id: 'n-maybe',    Icon: Hourglass,     title: 'Outcome B',      subtitle: 'Not ready yet',     x: 468, y: 268 },
-  { id: 'n-nurture',  Icon: Heart,         title: 'AI Step',        subtitle: 'Follow-up drip',    x: 652, y: 268 },
-  { id: 'n-lost',     Icon: XCircle,       title: 'Lost',           subtitle: 'Closed out',        x: 866, y: 268, variant: 'lost' },
+  { id: 'n-schedule', Icon: Clock, title: 'Every 6 hours', subtitle: 'Scheduled trigger', x: 6, y: 36, variant: 'trigger' },
+  { id: 'n-fetch', Icon: MagnifyingGlass, title: 'Search listings', subtitle: 'Remotive API', x: 206, y: 36 },
+  { id: 'n-split', Icon: Stack, title: 'Split job results', subtitle: 'Prepare records', x: 406, y: 36 },
+  { id: 'n-lookup', Icon: Plug, title: 'Check job IDs', subtitle: 'Airtable lookup', x: 606, y: 36 },
+  { id: 'n-filter', Icon: FunnelSimple, title: 'Filter new jobs', subtitle: 'Skip saved records', x: 806, y: 36, variant: 'gate' },
+  { id: 'n-prompt', Icon: FileText, title: 'Build AI batch', subtitle: 'Group new listings', x: 56, y: 268 },
+  { id: 'n-score', Icon: Sparkle, title: 'Score matches', subtitle: 'Gemini AI', x: 240, y: 268 },
+  { id: 'n-parse', Icon: FileText, title: 'Read results', subtitle: 'Match and reason', x: 468, y: 268 },
+  { id: 'n-merge', Icon: Stack, title: 'Merge results', subtitle: 'Join job details', x: 652, y: 268 },
+  { id: 'n-save', Icon: Stack, title: 'Save new jobs', subtitle: 'Airtable', x: 866, y: 268 },
 ]
 
 type LinkKind = 'solid' | 'dash' | 'loop'
 type Link = { from: string; to: string; kind?: LinkKind; label?: string }
 
 const LINKS: Link[] = [
-  // happy path (solid)
-  { from: 'n-form',   to: 'n-email' },
-  { from: 'n-email',  to: 'n-booked' },
-  { from: 'n-booked', to: 'n-24hr' },
-  { from: 'n-24hr',   to: 'n-1hr' },
-  { from: 'n-1hr',    to: 'n-call' },
-  // a loop back to an earlier step
-  { from: 'n-1hr',    to: 'n-booked', kind: 'loop', label: 'Loop Back' },
-  // decision outcomes (dashed dispatch)
-  { from: 'n-call',   to: 'n-proposal', kind: 'dash' },
-  { from: 'n-call',   to: 'n-maybe',    kind: 'dash' },
-  { from: 'n-call',   to: 'n-lost',     kind: 'dash' },
-  // outcome follow-ons (solid)
-  { from: 'n-proposal', to: 'n-won' },
-  { from: 'n-maybe',    to: 'n-nurture' },
+  { from: 'n-schedule', to: 'n-fetch' },
+  { from: 'n-fetch', to: 'n-split' },
+  { from: 'n-split', to: 'n-lookup' },
+  { from: 'n-lookup', to: 'n-filter' },
+  { from: 'n-filter', to: 'n-prompt', kind: 'dash' },
+  { from: 'n-prompt', to: 'n-score' },
+  { from: 'n-score', to: 'n-parse' },
+  { from: 'n-parse', to: 'n-merge' },
+  { from: 'n-filter', to: 'n-merge', kind: 'dash' },
+  { from: 'n-merge', to: 'n-save' },
 ]
 
 export const TOOLS: { Icon: Icon; label: string }[] = [
-  { Icon: Plug,           label: 'Your CRM' },
-  { Icon: EnvelopeSimple, label: 'Email & SMS' },
-  { Icon: Sparkle,        label: 'AI Assistant' },
+  { Icon: Lightning, label: 'n8n' },
+  { Icon: MagnifyingGlass, label: 'Remotive API' },
+  { Icon: Sparkle, label: 'Gemini AI' },
+  { Icon: Stack, label: 'Airtable' },
 ]
 
 const SVGNS = 'http://www.w3.org/2000/svg'
