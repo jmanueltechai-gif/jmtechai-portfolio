@@ -1,4 +1,4 @@
-import { Sparkle, MagnifyingGlass, Receipt, type Icon } from '@/components/slab'
+import { Sparkle, MagnifyingGlass, Coffee, type Icon } from '@/components/slab'
 import { profile } from '@/data/profile'
 
 export type StackStatus = 'Live' | 'Internal' | 'Beta'
@@ -17,7 +17,7 @@ export const aiStack: StackNode = {
   children: [
     {
       id: 'receiptiq',
-      Icon: Receipt,
+      Icon: Coffee,
       name: 'ReceiptIQ',
       what: 'Turns receipt photos into organized expense records and shareable reports.',
       stack: 'Lovable · Gemini AI',
