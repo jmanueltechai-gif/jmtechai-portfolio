@@ -12,7 +12,6 @@ import {
   AddressBook,
   Globe,
   AppWindow,
-  SealCheck,
 } from '@/components/slab'
 import { aiStack, type StackNode } from '@/data/ai-stack'
 import { profile } from '@/data/profile'
