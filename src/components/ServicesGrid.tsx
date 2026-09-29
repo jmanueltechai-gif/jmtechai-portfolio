@@ -1,15 +1,16 @@
-import type { CSSProperties } from 'react'
-import { MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
+import { useRef, useState, type CSSProperties } from 'react'
+import { ArrowsOut, MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
 import type { Icon } from '@/components/slab'
 import { TOOLS } from '@/components/Autopilot'
+import ImageLightbox, { type LightboxImage } from '@/components/ImageLightbox'
 
 /**
  * ServicesGrid - the Services view on one glass sheet.
  *
  * Three bands, top to bottom: your three-step method (on a dark plate so it
  * is the first thing the eye lands on), the five services as cards that carry
- * the marks of what each one is built with, and an animated illustration of the actual workflow
- * scaled to fit the page. Same object language as Home and
+ * the marks of what each one is built with, and the actual Job Listing Tracker workflow screenshot.
+ * Same object language as Home and
  * Projects: the glass, the bento card, plated marks, orange for the index
  * and the accent.
  *
@@ -129,7 +130,16 @@ function Marks({ logos }: { logos: string[] }) {
 
 /* ---------- The page ---------- */
 
+const WORKFLOW_IMAGE: LightboxImage = {
+  src: '/projects/job-listing-workflow.png',
+  alt: 'The n8n Job Listing Tracker workflow, from the scheduled Remotive search through Airtable duplicate checks, Gemini scoring, and saving new listings.',
+  caption: 'Job Listing Tracker · n8n workflow',
+}
+
 export default function ServicesGrid() {
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const triggerRef = useRef<HTMLElement | null>(null)
+
   return (
     <section className="pgrid sgrid" aria-labelledby="services-title">
       <header className="pgrid__head">
@@ -233,17 +243,32 @@ export default function ServicesGrid() {
           </header>
           <div className="sgrid__flow-main">
             <figure className="sgrid__workflow-figure">
-              <img
-                src="/projects/job-listing-workflow.png"
-                alt="The n8n Job Listing Tracker workflow, from the scheduled Remotive search through Airtable duplicate checks, Gemini scoring, and saving new listings."
-                loading="lazy"
-                decoding="async"
-              />
+              <button
+                type="button"
+                className="sgrid__workflow-trigger image-lightbox-trigger"
+                aria-label="Enlarge the n8n Job Listing Tracker workflow screenshot"
+                onClick={(event) => {
+                  triggerRef.current = event.currentTarget
+                  setLightboxOpen(true)
+                }}
+              >
+                <img src={WORKFLOW_IMAGE.src} alt={WORKFLOW_IMAGE.alt} loading="lazy" decoding="async" />
+                <span className="image-lightbox__chip">
+                  Click to enlarge <ArrowsOut size={15} weight="bold" aria-hidden="true" />
+                </span>
+              </button>
               <figcaption>The actual n8n workflow used for the Job Listing Tracker.</figcaption>
             </figure>
           </div>
         </div>
       </div>
+      <ImageLightbox
+        images={[WORKFLOW_IMAGE]}
+        open={lightboxOpen}
+        initialIndex={0}
+        onClose={() => setLightboxOpen(false)}
+        triggerRef={triggerRef}
+      />
     </section>
   )
 }
