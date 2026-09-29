@@ -126,9 +126,8 @@ function settled(): Promise<void> {
 
 /**
  * Watch the page for a while and step the tier down whenever a window comes
- * back janky. It keeps looking rather than judging once, because the costly
- * layers arrive at different times - the shader chunk lands late, a heavy
- * route mounts later still - and one early verdict misses them.
+ * back janky. It keeps looking rather than judging once, because heavier
+ * routes can mount later and one early verdict may miss them.
  *
  * A median over a full window (with tab-switch outliers dropped) is what gets
  * judged, so a single hitch cannot downgrade anyone.
