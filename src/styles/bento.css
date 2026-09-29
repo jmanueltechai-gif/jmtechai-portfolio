@@ -173,21 +173,65 @@
   to   { transform: translateY(-50%); }
 }
 
-/* About: three photos fanned like a hand of cards. */
-.bento__fan { display: grid; place-items: center; }
-.bento__photo {
-  grid-area: 1 / 1;
-  display: block;
-  width: clamp(96px, 7vw, 132px);
-  aspect-ratio: 3 / 4;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--plate);
-  box-shadow: 0 0 0 3px var(--white), 0 14px 30px -14px rgba(6, 12, 26, 0.6);
-  transition: transform var(--dur-slow) var(--ease-spring);
+/* About: a compact route through the work areas behind the portfolio. */
+.bento__about-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1vw, 16px);
+  padding: 8px 2px;
 }
-.bento__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
-.bento__card:hover .bento__photo { transform: scale(1.035); }
+.bento__about-step {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+}
+.bento__about-icon {
+  display: grid;
+  place-items: center;
+  width: clamp(42px, 4vw, 56px);
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: var(--white);
+  color: var(--orange-ink);
+  box-shadow: 0 8px 20px -16px var(--navy);
+  transition: transform var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out);
+}
+.bento__card:hover .bento__about-icon { transform: translateY(-3px); border-color: var(--orange); }
+.bento__about-label {
+  color: var(--muted);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+.bento__about-connector {
+  position: relative;
+  flex: 0 1 clamp(12px, 2vw, 28px);
+  height: 1px;
+  border-top: 1px dashed var(--line-strong);
+}
+.bento__about-connector::after {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-circle);
+  background: var(--orange);
+  content: '';
+  animation: bento-about-signal 2.8s var(--ease-out) infinite;
+}
+.bento__about-connector:nth-of-type(4)::after { animation-delay: -1.4s; }
+@keyframes bento-about-signal {
+  0%, 100% { left: 0; opacity: 0.2; }
+  45%, 60% { left: calc(100% - 6px); opacity: 1; }
+}
 
 /* Tools: two chip rows scrolling against each other. */
 .bento__chips {

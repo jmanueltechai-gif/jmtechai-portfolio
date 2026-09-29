@@ -1,12 +1,10 @@
 /**
  * Runtime performance gate.
  *
- * The shell pairs a full-screen WebGL contour shader with a `.home__glass`
- * plate that carries `backdrop-filter: blur(18px)`. On a strong GPU that is
- * free. On a weak one it is not: the plate is bigger than the viewport on
- * some routes, and the shader repainting behind it forces Chrome to re-blur
- * that whole rect 30 times a second. Measured on a software-GL profile the
- * pair drops the page from 60fps to 17-25fps - the "it's lagging" report.
+ * The portfolio uses large translucent plates and a full-screen decorative
+ * workflow network. On a strong device these effects are inexpensive; on a
+ * weaker one, backdrop filtering can still affect smooth scrolling. This gate
+ * measures the page as it runs and steps down the effects when needed.
  *
  * Rather than guess at the visitor's hardware from a user-agent string, this
  * measures the page as it actually runs and steps the design down until it
@@ -14,7 +12,7 @@
  *
  *   high  everything on - the design as drawn
  *   mid   backdrop-filter off, the plates go opaque (see styles/perf.css)
- *   low   the shader unmounts too; the page keeps the flat cream/ink ground
+ *   low   the decorative workflow background unmounts; theme ground remains
  *
  * The verdict lands on `<html data-perf>` and is remembered for the tab in
  * sessionStorage, so a route change never re-measures and a new tab on a
@@ -102,20 +100,14 @@ function measure(): Promise<number | null> {
 const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
 
 /**
- * Resolve once the page is actually running the expensive version of itself:
- * the intro overlay has released, and the shader canvas has mounted.
- *
- * The canvas wait is not optional. Three.js is a lazy 125KB chunk, so on a
- * real connection the shader starts painting SECONDS after first render - a
- * gate that measured before then saw a quiet page, called it healthy and left
- * a 20fps visitor on the full design. Locally the chunk was instant and the
- * bug was invisible.
+ * Resolve when the intro has released and the workflow background has mounted,
+ * so the first measurement reflects the page the visitor is actually seeing.
  */
 function settled(): Promise<void> {
   return new Promise((resolve) => {
     const ready = () =>
       !document.documentElement.classList.contains('is-intro') &&
-      (!!document.querySelector('.hero-canvas canvas') || getPerfTier() === 'low')
+      (!!document.querySelector('.hero-network') || getPerfTier() === 'low')
 
     const done = () => {
       window.clearInterval(id)
@@ -125,8 +117,8 @@ function settled(): Promise<void> {
     const id = window.setInterval(() => {
       if (ready()) done()
     }, 200)
-    // A page with no shader at all (reduced motion, touch, a failed chunk)
-    // still deserves to be measured - just later.
+    // A page without the background (for example, a low-tier page) still
+    // deserves to be measured - just later.
     const bail = window.setTimeout(done, 10000)
     if (ready()) done()
   })
@@ -134,9 +126,8 @@ function settled(): Promise<void> {
 
 /**
  * Watch the page for a while and step the tier down whenever a window comes
- * back janky. It keeps looking rather than judging once, because the costly
- * layers arrive at different times - the shader chunk lands late, a heavy
- * route mounts later still - and one early verdict misses them.
+ * back janky. It keeps looking rather than judging once, because heavier
+ * routes can mount later and one early verdict may miss them.
  *
  * A median over a full window (with tab-switch outliers dropped) is what gets
  * judged, so a single hitch cannot downgrade anyone.

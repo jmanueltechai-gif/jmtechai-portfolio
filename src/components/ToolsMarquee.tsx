@@ -45,6 +45,9 @@ export const tools: Tool[] = [
   { name: 'Lovable' },
   { name: 'Zapier', iconPath: '/icons/ai/zapier.svg' },
   { name: 'Meta', iconPath: 'https://cdn.simpleicons.org/meta/0668E1' },
+  { name: 'Apollo' },
+  { name: 'Snov' },
+  { name: 'Sales Navigator', iconPath: '/icons/linkedin.svg' },
 ]
 
 export default function ToolsMarquee() {

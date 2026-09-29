@@ -8,8 +8,7 @@
         rail material) no longer blur at any tier since 2026-09-13 - they are
         painted near-opaque in home.css / apple.css - so this only catches
         the small blurs that remain.
-   low  the shader is unmounted by App.tsx as well; body's --cream / ink
-        ground carries the page, the same baseline phones already get.
+   low  the decorative workflow background is unmounted by App.tsx too.
    ============================================================ */
 
 :root[data-perf='mid'] *,
@@ -22,8 +21,7 @@
   -webkit-backdrop-filter: none !important;
 }
 
-/* Belt and braces: App.tsx stops rendering the canvas at `low`, but a tier
-   restored before mount should never paint it even for a frame. */
+/* Belt and braces: a restored low tier hides the decorative background. */
 :root[data-perf='low'] .hero-canvas {
   display: none;
 }

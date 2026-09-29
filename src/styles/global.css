@@ -106,88 +106,16 @@ button {
 }
 
 /* ============================================
-   HERO CANVAS - animated WebGL contour background
-   Dropped in verbatim from extracted-hero-bg/BACKGROUND-EXPORT/hero-canvas.css
+   HERO CANVAS - restrained workflow background
    ============================================ */
-.hero-canvas canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.hero-network {
-  --network-wire: rgba(107, 111, 115, 0.24);
-  --network-node-fill: rgba(255, 255, 255, 0.62);
-  --network-node-stroke: rgba(94, 101, 111, 0.42);
-  --network-node-detail: rgba(78, 88, 101, 0.54);
-  --network-accent: rgba(255, 122, 26, 0.68);
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
-  opacity: 0.55;
-}
-[data-theme='dark'] .hero-network {
-  --network-wire: rgba(149, 178, 220, 0.26);
-  --network-node-fill: rgba(20, 35, 61, 0.76);
-  --network-node-stroke: rgba(139, 166, 205, 0.40);
-  --network-node-detail: rgba(177, 194, 219, 0.55);
-  --network-accent: rgba(255, 151, 71, 0.76);
-}
-.hero-network__wires path,
-.hero-network__flow path {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.hero-network__wires path {
-  stroke: var(--network-wire);
-  stroke-width: 2;
-}
-.hero-network__flow path {
-  stroke: var(--network-accent);
-  stroke-width: 2;
-  stroke-dasharray: 2 34;
-  animation: hero-network-flow 8s linear infinite;
-}
-.hero-network__nodes g {
-  fill: var(--network-node-fill);
-  stroke: var(--network-node-stroke);
-  stroke-width: 1.5;
-}
-.hero-network__nodes circle {
-  fill: var(--network-accent);
-  stroke: none;
-  animation: hero-network-pulse 3.6s ease-in-out infinite;
-}
-.hero-network__nodes g:nth-child(3n) circle { animation-delay: -1.2s; }
-.hero-network__nodes g:nth-child(3n + 1) circle { animation-delay: -2.4s; }
-.hero-network__nodes path {
-  fill: none;
-  stroke: var(--network-node-detail);
-  stroke-linecap: round;
-  stroke-width: 2;
-}
-@keyframes hero-network-flow { to { stroke-dashoffset: -144; } }
-@keyframes hero-network-pulse { 0%, 100% { opacity: .42; } 50% { opacity: 1; } }
-@media (prefers-reduced-motion: reduce) {
-  .hero-network__flow path,
-  .hero-network__nodes circle { animation: none; }
-}
 .hero-canvas {
   position: fixed;
   inset: 0;
   z-index: 0;
+  display: block;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  /* Cream fallback so the page reads as light even if WebGL hasn't
-     painted yet (mobile GPUs sometimes show black flash before the
-     shader's first frame, or fail entirely on weak devices). The
-     shader paints on top once it's ready. */
-  background: var(--cream);
 }
 
 main > * {

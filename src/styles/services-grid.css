@@ -279,6 +279,16 @@
   color: var(--navy);
 }
 .sgrid__bullet svg { flex: none; margin-top: 2px; color: var(--orange); }
+.sgrid__tool-names { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.sgrid__tool-name {
+  padding: 3px 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  color: var(--muted);
+  background: var(--paper);
+  font-size: 10.5px;
+  line-height: 1.3;
+}
 
 /* ---------- The workflow ---------- */
 .sgrid__flow {
@@ -371,13 +381,29 @@
 
 
 .sgrid__workflow-figure { width: min(100%, 1120px); margin: 0; }
-.sgrid__workflow-figure img {
+.sgrid__workflow-shot {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+.sgrid__workflow-trigger {
+  text-align: left;
+  font: inherit;
+}
+.sgrid__workflow-trigger:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+.sgrid__workflow-image {
   display: block;
   width: 100%;
   max-height: 420px;
   object-fit: contain;
-  border-radius: 14px;
-  border: 1px solid var(--line-strong);
+  border-radius: 8px;
   background: var(--paper);
 }
 .sgrid__workflow-figure figcaption { margin-top: 8px; text-align: center; font-size: 12px; line-height: 1.45; color: var(--muted); }

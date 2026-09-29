@@ -1,5 +1,6 @@
-import type { CSSProperties } from 'react'
-import { MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
+import { useRef, useState, type CSSProperties } from 'react'
+import { ArrowsOut, MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
+import ImageLightbox, { type LightboxImage } from '@/components/ImageLightbox'
 import type { Icon } from '@/components/slab'
 import { TOOLS } from '@/components/Autopilot'
 
@@ -8,8 +9,8 @@ import { TOOLS } from '@/components/Autopilot'
  *
  * Three bands, top to bottom: your three-step method (on a dark plate so it
  * is the first thing the eye lands on), the five services as cards that carry
- * the marks of what each one is built with, and an animated illustration of the actual workflow
- * scaled to fit the page. Same object language as Home and
+ * the marks of what each one is built with, and the actual Job Listing Tracker workflow screenshot.
+ * Same object language as Home and
  * Projects: the glass, the bento card, plated marks, orange for the index
  * and the accent.
  *
@@ -58,9 +59,9 @@ const N8N = '/icons/ai/n8n.svg'
 const MAKE = 'https://cdn.simpleicons.org/make/6D00CC'
 const AIRTABLE = 'https://cdn.simpleicons.org/airtable/18BFFF'
 const ASANA = 'https://cdn.simpleicons.org/asana/F06A6A'
-const LOVABLE = 'https://cdn.simpleicons.org/lovable/FF4F00'
 const ZAPIER = '/icons/ai/zapier.svg'
 const META = 'https://cdn.simpleicons.org/meta/0668E1'
+const SALES_NAVIGATOR = '/icons/linkedin.svg'
 
 type Service = {
   index: string
@@ -69,6 +70,7 @@ type Service = {
   chip: string
   logos: string[]
   bullets: string[]
+  toolNames?: string[]
 }
 
 const SERVICES: Service[] = [
@@ -101,15 +103,16 @@ const SERVICES: Service[] = [
     title: 'Digital marketing & communities',
     description: 'Build engagement through relevant posts, group activity, and lead follow-up.',
     chip: 'Community growth',
-    logos: [META, ZAPIER, AIRTABLE],
+    logos: [META, ZAPIER, AIRTABLE, SALES_NAVIGATOR],
     bullets: ['Plan useful marketing posts', 'Monitor community activity', 'Identify audience opportunities'],
+    toolNames: ['Apollo', 'Snov', 'Sales Navigator'],
   },
   {
     index: '05',
     title: 'Process improvement & reporting',
     description: 'Make work easier to follow and give teams a clearer view of progress.',
     chip: 'Clearer processes',
-    logos: [ASANA, AIRTABLE, MAKE, LOVABLE],
+    logos: [ASANA, AIRTABLE, MAKE],
     bullets: ['Find process bottlenecks', 'Improve information tracking', 'Share useful progress insights'],
   },
 ]
@@ -129,8 +132,18 @@ function Marks({ logos }: { logos: string[] }) {
 
 /* ---------- The page ---------- */
 
+const WORKFLOW_IMAGE: LightboxImage = {
+  src: '/projects/job-listing-workflow.png',
+  alt: 'The n8n Job Listing Tracker workflow, from the scheduled Remotive search through Airtable duplicate checks, Gemini scoring, and saving new listings.',
+  caption: 'Job Listing Tracker · n8n workflow',
+}
+
 export default function ServicesGrid() {
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const triggerRef = useRef<HTMLElement | null>(null)
+
   return (
+    <>
     <section className="pgrid sgrid" aria-labelledby="services-title">
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">Services</span>
@@ -196,6 +209,11 @@ export default function ServicesGrid() {
                   </span>
                   <span className="bento__title">{s.title}</span>
                   <span className="bento__desc">{s.description}</span>
+                  {s.toolNames && (
+                    <span className="sgrid__tool-names" aria-label="Lead research tools">
+                      {s.toolNames.map((name) => <span className="sgrid__tool-name" key={name}>{name}</span>)}
+                    </span>
+                  )}
                 </span>
                 <span className="sgrid__chip" aria-hidden="true">{s.chip}</span>
                 <ul className="sgrid__bullets" role="list">
@@ -233,17 +251,32 @@ export default function ServicesGrid() {
           </header>
           <div className="sgrid__flow-main">
             <figure className="sgrid__workflow-figure">
-              <img
-                src="/projects/job-listing-workflow.png"
-                alt="The n8n Job Listing Tracker workflow, from the scheduled Remotive search through Airtable duplicate checks, Gemini scoring, and saving new listings."
-                loading="lazy"
-                decoding="async"
-              />
+              <button
+                type="button"
+                className="sgrid__workflow-shot sgrid__workflow-trigger image-lightbox-trigger"
+                aria-label="Enlarge the Job Listing Tracker workflow screenshot"
+                onClick={(event) => {
+                  triggerRef.current = event.currentTarget
+                  setLightboxOpen(true)
+                }}
+              >
+                <img className="sgrid__workflow-image" src={WORKFLOW_IMAGE.src} alt={WORKFLOW_IMAGE.alt} loading="lazy" decoding="async" />
+                <span className="image-lightbox__chip">
+                  Click to enlarge <ArrowsOut size={15} weight="bold" aria-hidden="true" />
+                </span>
+              </button>
               <figcaption>The actual n8n workflow used for the Job Listing Tracker.</figcaption>
             </figure>
           </div>
         </div>
       </div>
     </section>
+      <ImageLightbox
+        images={[WORKFLOW_IMAGE]}
+        open={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        triggerRef={triggerRef}
+      />
+    </>
   )
 }

@@ -28,7 +28,8 @@ import { profile } from '@/data/profile'
  * only - nothing here touches layout.
  */
 
-const WORDS = `${profile.displayName.line1} ${profile.displayName.line2}`.split(' ')
+const NAME_WORDS = profile.displayName.line1.split(' ')
+const ROLE_WORDS = profile.displayName.line2.split(' ')
 
 const IGNITE_MS = 300
 const RUN_MS = 1600
@@ -186,24 +187,21 @@ export default function IntroOverlay() {
         })
       }
 
-      // Words: flex swallows the literal spaces, so the column gap is one
-      // measured space and the row is allowed to wrap. Same width, same face,
-      // same gap as the real headline, so it breaks on the same words (one
-      // line on phones too, see mobile-pass.css) and the flight lands on the
-      // same shape.
+      // Each title line keeps its own typography: the navy name is larger,
+      // while the orange role matches the smaller line on the Home page.
+      // Measure a real space in each line's font so the animated copy lands
+      // with the same word spacing as the page title.
       const wordEls = Array.from(title.querySelectorAll<HTMLElement>('.boot__word'))
-      const probe = document.createElement('span')
-      probe.className = 'boot__word'
-      probe.textContent = ' '
-      title.append(probe)
-      const space = probe.getBoundingClientRect().width / scale
-      probe.remove()
-      // One line: distribute the leftover exactly as the real headline does,
-      // which absorbs sub-pixel rounding that would otherwise force a wrap.
-      // More than one line: a natural space, and the row wraps like the h1.
-      const inked = wordEls.reduce((sum, el) => sum + el.getBoundingClientRect().width, 0) / scale
-      const fits = inked + (wordEls.length - 1) * space <= width + 0.5
-      title.style.columnGap = `${fits ? Math.max(0, (width - inked) / (wordEls.length - 1)) : space}px`
+      const wordLines = Array.from(title.querySelectorAll<HTMLElement>('.boot__line'))
+      for (const line of wordLines) {
+        const probe = document.createElement('span')
+        probe.className = 'boot__word'
+        probe.textContent = ' '
+        line.append(probe)
+        const space = probe.getBoundingClientRect().width / scale
+        probe.remove()
+        line.style.columnGap = `${space}px`
+      }
       // Reveal in reading order, spread across the run.
       const gates = wordEls.map((el, k) => ({
         inner: el.querySelector<HTMLElement>('.boot__word-in'),
@@ -361,11 +359,20 @@ export default function IntroOverlay() {
   return (
     <div className="boot" aria-hidden="true" role="presentation">
       <div className="boot__title" ref={titleRef}>
-        {WORDS.map((word, i) => (
-          <span className="boot__word" key={`${word}-${i}`}>
-            <span className="boot__word-in">{word}</span>
-          </span>
-        ))}
+        <span className="boot__line boot__line--name">
+          {NAME_WORDS.map((word, i) => (
+            <span className="boot__word" key={`name-${word}-${i}`}>
+              <span className="boot__word-in">{word}</span>
+            </span>
+          ))}
+        </span>
+        <span className="boot__line boot__line--role">
+          {ROLE_WORDS.map((word, i) => (
+            <span className="boot__word" key={`role-${word}-${i}`}>
+              <span className="boot__word-in">{word}</span>
+            </span>
+          ))}
+        </span>
       </div>
 
       <div className="boot__canvas" ref={canvasRef}>

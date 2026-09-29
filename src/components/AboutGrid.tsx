@@ -20,18 +20,19 @@ const AIRTABLE = { src: 'https://cdn.simpleicons.org/airtable/18BFFF', name: 'Ai
 const ASANA = { src: 'https://cdn.simpleicons.org/asana/F06A6A', name: 'Asana' }
 const ZAPIER = { src: '/icons/ai/zapier.svg', name: 'Zapier' }
 const META = { src: 'https://cdn.simpleicons.org/meta/0668E1', name: 'Meta' }
-const LOVABLE = { src: 'https://cdn.simpleicons.org/lovable/FF4F00', name: 'Lovable' }
+const SALES_NAVIGATOR = { src: '/icons/linkedin.svg', name: 'Sales Navigator' }
 
 type Capability = {
   index: string
   title: string
   marks: { src: string; name: string }[]
+  toolNames?: string[]
 }
 
 const CAPABILITIES: Capability[] = [
-  { index: '01', title: 'AI & business automation', marks: [N8N, MAKE, ZAPIER, LOVABLE] },
+  { index: '01', title: 'AI & business automation', marks: [N8N, MAKE, ZAPIER] },
   { index: '02', title: 'Operations & workflow coordination', marks: [AIRTABLE, ASANA, MAKE] },
-  { index: '03', title: 'Community management & marketing', marks: [META, AIRTABLE] },
+  { index: '03', title: 'Community management & marketing', marks: [META, AIRTABLE, SALES_NAVIGATOR], toolNames: ['Apollo', 'Snov', 'Sales Navigator'] },
   { index: '04', title: 'Team coordination & reporting', marks: [ASANA, ZAPIER, AIRTABLE] },
 ]
 
@@ -73,7 +74,10 @@ export default function AboutGrid() {
                     </span>
                   ))}
                 </span>
-                <span className="agrid__cap-title">{c.title}</span>
+                <span className="agrid__cap-title">
+                  {c.title}
+                  {c.toolNames && <span className="agrid__cap-tool-names">{c.toolNames.join(' · ')}</span>}
+                </span>
                 <span className="agrid__cap-index" aria-hidden="true">
                   {c.index}
                 </span>
