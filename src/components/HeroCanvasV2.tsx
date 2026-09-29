@@ -229,8 +229,8 @@ function createMobileScene(width: number, height: number, elapsed: number): Scen
   let id = 0
   const nextId = () => id++
   const bottom = height - 36
-  const laneGap = Math.min(150, Math.max(100, (height - 180) / 3))
-  const startY = Math.max(160, bottom - laneGap * 3)
+  const laneGap = Math.min(150, Math.max(140, (height - 180) / 3))
+  const startY = Math.max(24, bottom - laneGap * 3)
   const toolOneY = startY + laneGap
   const toolTwoY = startY + laneGap * 2
   const endY = startY + laneGap * 3
