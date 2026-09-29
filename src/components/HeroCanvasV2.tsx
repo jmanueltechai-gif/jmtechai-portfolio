@@ -796,8 +796,10 @@ export default function HeroCanvasV2() {
     }
 
     previousTime = performance.now()
-    running = true
-    animationFrame = window.requestAnimationFrame(loop)
+    if (!document.hidden) {
+      running = true
+      animationFrame = window.requestAnimationFrame(loop)
+    }
 
     return () => {
       disposed = true
