@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { SealCheck, CaretRight, Stack, Coffee, EnvelopeSimple } from '@/components/slab'
+import { SealCheck, CaretRight, Stack, Coffee, EnvelopeSimple, Gear } from '@/components/slab'
 import { profile } from '@/data/profile'
 import QuickMenu from './QuickMenu'
 
@@ -50,7 +50,7 @@ const TILES = [
   { n: '02', label: 'Services', to: '/services', title: 'How I can help', desc: 'Tell me what to put here.', Icon: Stack },
   { n: '03', label: 'Showcase', to: '/showcase', title: 'Selected projects', desc: 'See ReceiptIQ and the Job Listing Tracker in context.', Icon: Coffee, accent: true },
   { n: '04', label: 'Contact', to: '/contact', title: 'Let’s connect', desc: 'Talk about an operations or automation need.', Icon: EnvelopeSimple },
-  { n: '05', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'Operations, recruitment, marketing, and automation.', img: profile.avatarSrc },
+  { n: '05', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'Operations, recruitment, marketing, and automation.', Icon: Gear },
 ] as const
 
 export function HomeExplore() {
