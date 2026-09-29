@@ -106,15 +106,8 @@ button {
 }
 
 /* ============================================
-   HERO CANVAS - animated WebGL contour background
-   Dropped in verbatim from extracted-hero-bg/BACKGROUND-EXPORT/hero-canvas.css
+   HERO CANVAS - theme-aware base for the animated workflow network
    ============================================ */
-.hero-canvas canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
 .hero-network {
   position: absolute;
   inset: 0;
@@ -181,10 +174,6 @@ button {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  /* Cream fallback so the page reads as light even if WebGL hasn't
-     painted yet (mobile GPUs sometimes show black flash before the
-     shader's first frame, or fail entirely on weak devices). The
-     shader paints on top once it's ready. */
   background: var(--cream);
 }
 
