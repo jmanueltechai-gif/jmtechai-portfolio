@@ -15,6 +15,7 @@
   background: transparent;
   color: var(--lightbox-text);
 }
+.image-lightbox:not([open]) { display: none; }
 [data-theme='dark'] .image-lightbox {
   --lightbox-text: var(--navy);
 }
@@ -23,7 +24,8 @@
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
-.image-lightbox[open] {
+ .image-lightbox[open] {
+  display: flex;
   animation: image-lightbox-enter 200ms var(--ease-out) both;
 }
 .image-lightbox[open] .image-lightbox__figure {
