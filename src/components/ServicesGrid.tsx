@@ -1,8 +1,7 @@
-import { useRef, useState, type CSSProperties } from 'react'
-import { ArrowsOut, MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
+import type { CSSProperties } from 'react'
+import { MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
 import type { Icon } from '@/components/slab'
 import { TOOLS } from '@/components/Autopilot'
-import ImageLightbox, { type LightboxImage } from '@/components/ImageLightbox'
 
 /**
  * ServicesGrid - the Services view on one glass sheet.
@@ -130,16 +129,13 @@ function Marks({ logos }: { logos: string[] }) {
 
 /* ---------- The page ---------- */
 
-const WORKFLOW_IMAGE: LightboxImage = {
+const WORKFLOW_IMAGE = {
   src: '/projects/job-listing-workflow.png',
   alt: 'The n8n Job Listing Tracker workflow, from the scheduled Remotive search through Airtable duplicate checks, Gemini scoring, and saving new listings.',
   caption: 'Job Listing Tracker · n8n workflow',
 }
 
 export default function ServicesGrid() {
-  const [lightboxOpen, setLightboxOpen] = useState(false)
-  const triggerRef = useRef<HTMLElement | null>(null)
-
   return (
     <section className="pgrid sgrid" aria-labelledby="services-title">
       <header className="pgrid__head">
@@ -243,32 +239,14 @@ export default function ServicesGrid() {
           </header>
           <div className="sgrid__flow-main">
             <figure className="sgrid__workflow-figure">
-              <button
-                type="button"
-                className="sgrid__workflow-trigger image-lightbox-trigger"
-                aria-label="Enlarge the n8n Job Listing Tracker workflow screenshot"
-                onClick={(event) => {
-                  triggerRef.current = event.currentTarget
-                  setLightboxOpen(true)
-                }}
-              >
-                <img src={WORKFLOW_IMAGE.src} alt={WORKFLOW_IMAGE.alt} loading="lazy" decoding="async" />
-                <span className="image-lightbox__chip">
-                  Click to enlarge <ArrowsOut size={15} weight="bold" aria-hidden="true" />
-                </span>
-              </button>
+              <div className="sgrid__workflow-shot">
+                <img className="sgrid__workflow-image" src={WORKFLOW_IMAGE.src} alt={WORKFLOW_IMAGE.alt} loading="lazy" decoding="async" />
+              </div>
               <figcaption>The actual n8n workflow used for the Job Listing Tracker.</figcaption>
             </figure>
           </div>
         </div>
       </div>
-      <ImageLightbox
-        images={[WORKFLOW_IMAGE]}
-        open={lightboxOpen}
-        initialIndex={0}
-        onClose={() => setLightboxOpen(false)}
-        triggerRef={triggerRef}
-      />
     </section>
   )
 }
