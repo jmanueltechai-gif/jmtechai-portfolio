@@ -371,20 +371,14 @@
 
 
 .sgrid__workflow-figure { width: min(100%, 1120px); margin: 0; }
-.sgrid__workflow-trigger {
-  position: relative;
-  display: block;
+.sgrid__workflow-shot {
   width: 100%;
   padding: 8px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--paper);
-  cursor: zoom-in;
-  transition: box-shadow var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out);
 }
-.sgrid__workflow-trigger:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
-.sgrid__workflow-trigger:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
-.sgrid__workflow-trigger img {
+.sgrid__workflow-image {
   display: block;
   width: 100%;
   max-height: 420px;
