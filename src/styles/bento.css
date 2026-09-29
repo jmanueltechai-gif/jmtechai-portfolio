@@ -227,7 +227,7 @@
   content: '';
   animation: bento-about-signal 2.8s var(--ease-out) infinite;
 }
-.bento__about-connector:nth-of-type(2)::after { animation-delay: -1.4s; }
+.bento__about-connector:nth-of-type(4)::after { animation-delay: -1.4s; }
 @keyframes bento-about-signal {
   0%, 100% { left: 0; opacity: 0.2; }
   45%, 60% { left: calc(100% - 6px); opacity: 1; }
