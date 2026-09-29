@@ -7,14 +7,13 @@ import IntroOverlay from '@/components/IntroOverlay'
 import HeroCanvas from '@/components/HeroCanvasV2'
 import CursorRing from '@/components/CursorRing'
 import AccessMenu from '@/components/AccessMenu'
-import { motionReduced } from '@/lib/a11y'
 import { useLenis, SCROLLER_ID } from '@/hooks/useLenis'
 import { useIsPhone } from '@/hooks/useMediaQuery'
 import { getPerfTier, watchFrameHealth, PERF_TIER_EVENT } from '@/lib/perf'
 
 /**
- * The shell. It owns everything that outlives a route change: the contour
- * shader, the intro, the profile rail and the one scrolling panel. Each route
+ * The shell. It owns everything that outlives a route change: the workflow
+ * network, the intro, the profile rail and the one scrolling panel. Each route
  * renders its view into that panel through the Outlet.
  *
  * Home is the fixed landing screen. Longer project and profile pages can
