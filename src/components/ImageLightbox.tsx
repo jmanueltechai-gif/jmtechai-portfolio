@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react'
-import { ArrowsIn, ArrowsOut, CaretLeft, CaretRight, X } from '@/components/slab'
+import { CaretLeft, CaretRight, X } from '@/components/slab'
 import '@/styles/image-lightbox.css'
 
 export type LightboxImage = {
