@@ -201,30 +201,28 @@ export default function HeroCanvasV2() {
     <div ref={ref} className="hero-canvas" aria-hidden="true">
       <svg className="hero-network" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
         <g className="hero-network__wires">
-          <path d="M110 196 H320 C350 196 350 210 380 210 H580 C610 210 610 190 640 190 H820" />
-          <path d="M580 210 C620 210 620 300 660 300 H900 C930 300 930 280 960 280 H1220" />
-          <path d="M250 500 H470 C500 500 500 470 530 470 H740 C770 470 770 500 800 500 H1030" />
-          <path d="M820 190 C870 190 870 130 920 130 H1150" />
-          <path d="M470 500 C520 500 520 590 570 590 H780 C810 590 810 560 840 560 H1110" />
+          <path d="M155 200 C220 200 300 220 365 220" />
+          <path d="M455 220 C520 220 620 200 685 200" />
+          <path d="M775 200 H1035" />
+          <path d="M410 244 V456" />
+          <path d="M455 480 H1035" />
+          <path d="M1080 224 V456" />
         </g>
         <g className="hero-network__flow">
-          <path d="M110 196 H320 C350 196 350 210 380 210 H580 C610 210 610 190 640 190 H820" />
-          <path d="M580 210 C620 210 620 300 660 300 H900 C930 300 930 280 960 280 H1220" />
-          <path d="M250 500 H470 C500 500 500 470 530 470 H740 C770 470 770 500 800 500 H1030" />
-          <path d="M820 190 C870 190 870 130 920 130 H1150" />
-          <path d="M470 500 C520 500 520 590 570 590 H780 C810 590 810 560 840 560 H1110" />
+          <path d="M155 200 C220 200 300 220 365 220" />
+          <path d="M455 220 C520 220 620 200 685 200" />
+          <path d="M775 200 H1035" />
+          <path d="M410 244 V456" />
+          <path d="M455 480 H1035" />
+          <path d="M1080 224 V456" />
         </g>
         <g className="hero-network__nodes">
-          <g transform="translate(70 172)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
-          <g transform="translate(340 186)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
-          <g transform="translate(600 166)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
-          <g transform="translate(780 106)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
-          <g transform="translate(620 276)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
-          <g transform="translate(920 256)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
-          <g transform="translate(210 476)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
-          <g transform="translate(490 446)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
-          <g transform="translate(760 476)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
-          <g transform="translate(800 536)"><rect width="90" height="48" rx="14"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(65 176)"><rect width="90" height="48" rx="12"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(365 196)"><rect width="90" height="48" rx="12"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(685 176)"><rect width="90" height="48" rx="12"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(1035 176)"><rect width="90" height="48" rx="12"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(365 456)"><rect width="90" height="48" rx="12"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
+          <g transform="translate(1035 456)"><rect width="90" height="48" rx="12"/><circle cx="18" cy="24" r="5"/><path d="M34 18h38M34 27h25"/></g>
         </g>
       </svg>
     </div>
