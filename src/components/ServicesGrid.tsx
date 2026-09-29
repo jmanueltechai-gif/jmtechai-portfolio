@@ -58,9 +58,9 @@ const N8N = '/icons/ai/n8n.svg'
 const MAKE = 'https://cdn.simpleicons.org/make/6D00CC'
 const AIRTABLE = 'https://cdn.simpleicons.org/airtable/18BFFF'
 const ASANA = 'https://cdn.simpleicons.org/asana/F06A6A'
-const LOVABLE = 'https://cdn.simpleicons.org/lovable/FF4F00'
 const ZAPIER = '/icons/ai/zapier.svg'
 const META = 'https://cdn.simpleicons.org/meta/0668E1'
+const SALES_NAVIGATOR = '/icons/linkedin.svg'
 
 type Service = {
   index: string
@@ -69,6 +69,7 @@ type Service = {
   chip: string
   logos: string[]
   bullets: string[]
+  toolNames?: string[]
 }
 
 const SERVICES: Service[] = [
@@ -101,15 +102,16 @@ const SERVICES: Service[] = [
     title: 'Digital marketing & communities',
     description: 'Build engagement through relevant posts, group activity, and lead follow-up.',
     chip: 'Community growth',
-    logos: [META, ZAPIER, AIRTABLE],
+    logos: [META, ZAPIER, AIRTABLE, SALES_NAVIGATOR],
     bullets: ['Plan useful marketing posts', 'Monitor community activity', 'Identify audience opportunities'],
+    toolNames: ['Apollo', 'Snov', 'Sales Navigator'],
   },
   {
     index: '05',
     title: 'Process improvement & reporting',
     description: 'Make work easier to follow and give teams a clearer view of progress.',
     chip: 'Clearer processes',
-    logos: [ASANA, AIRTABLE, MAKE, LOVABLE],
+    logos: [ASANA, AIRTABLE, MAKE],
     bullets: ['Find process bottlenecks', 'Improve information tracking', 'Share useful progress insights'],
   },
 ]
@@ -202,6 +204,11 @@ export default function ServicesGrid() {
                   </span>
                   <span className="bento__title">{s.title}</span>
                   <span className="bento__desc">{s.description}</span>
+                  {s.toolNames && (
+                    <span className="sgrid__tool-names" aria-label="Lead research tools">
+                      {s.toolNames.map((name) => <span className="sgrid__tool-name" key={name}>{name}</span>)}
+                    </span>
+                  )}
                 </span>
                 <span className="sgrid__chip" aria-hidden="true">{s.chip}</span>
                 <ul className="sgrid__bullets" role="list">
