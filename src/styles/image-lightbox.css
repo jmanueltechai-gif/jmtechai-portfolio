@@ -49,8 +49,8 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  max-width: 82vw;
-  max-height: 76vh;
+  max-width: 74vw;
+  max-height: 70vh;
   margin: 0;
 }
 .image-lightbox__viewport {
@@ -58,8 +58,8 @@
   flex: 0 1 auto;
   align-items: center;
   justify-content: center;
-  max-width: 82vw;
-  max-height: 68vh;
+  max-width: 74vw;
+  max-height: 64vh;
   overflow: auto;
   overscroll-behavior: contain;
   scrollbar-color: var(--orange) var(--panel-dark);
@@ -68,8 +68,8 @@
 .image-lightbox__zoom-toggle {
   display: block;
   flex: none;
-  width: 82vw;
-  height: 68vh;
+  width: 74vw;
+  height: 64vh;
   overflow: visible;
   border: 0;
   background: transparent;
@@ -77,8 +77,8 @@
   cursor: zoom-in;
 }
 .image-lightbox__zoom-toggle.is-zoomed {
-  width: 164vw;
-  height: 136vh;
+  width: 148vw;
+  height: 128vh;
   cursor: zoom-out;
 }
 .image-lightbox__zoom-toggle img {
@@ -91,7 +91,7 @@
   user-select: none;
 }
 .image-lightbox__caption {
-  max-width: 82vw;
+  max-width: 74vw;
   color: var(--lightbox-text);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
@@ -193,8 +193,7 @@
   .image-lightbox__close,
   .image-lightbox__nav,
   .image-lightbox__chip,
-  .showcase-project__image-frame,
-  .sgrid__workflow-trigger {
+  .showcase-project__image-frame {
     transition: none;
   }
 }
