@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react'
+import { useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { CaretLeft, CaretRight, X } from '@/components/slab'
 import '@/styles/image-lightbox.css'
 
@@ -30,7 +30,7 @@ export default function ImageLightbox({
   const [zoomed, setZoomed] = useState(false)
   const image = images[activeIndex]
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!open) return
     setActiveIndex(Math.min(Math.max(initialIndex, 0), images.length - 1))
     setZoomed(false)
