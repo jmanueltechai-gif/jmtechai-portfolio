@@ -361,8 +361,10 @@ export default function HeroCanvasV2() {
 
   useEffect(() => {
     const canvas = canvasRef.current
-    const ctx = canvas?.getContext('2d')
-    if (!canvas || !ctx) return
+    if (!canvas) return
+    const context = canvas.getContext('2d')
+    if (!context) return
+    const ctx: CanvasRenderingContext2D = context
 
     let width = window.innerWidth
     let height = window.innerHeight
@@ -389,7 +391,7 @@ export default function HeroCanvasV2() {
       window.matchMedia('(hover: none)').matches ||
       window.matchMedia('(pointer: coarse)').matches ||
       window.navigator.maxTouchPoints > 0
-    const cursorEnabled = width >= 768 && !touchDevice
+    let cursorEnabled = width >= 768 && !touchDevice
 
     const readPalette = () => {
       theme = {
