@@ -382,11 +382,21 @@
 
 .sgrid__workflow-figure { width: min(100%, 1120px); margin: 0; }
 .sgrid__workflow-shot {
+  position: relative;
+  display: block;
   width: 100%;
   padding: 8px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--paper);
+}
+.sgrid__workflow-trigger {
+  text-align: left;
+  font: inherit;
+}
+.sgrid__workflow-trigger:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
 }
 .sgrid__workflow-image {
   display: block;
