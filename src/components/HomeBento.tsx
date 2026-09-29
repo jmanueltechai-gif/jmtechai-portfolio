@@ -14,7 +14,6 @@ import {
   AppWindow,
 } from '@/components/slab'
 import { aiStack } from '@/data/ai-stack'
-import { profile } from '@/data/profile'
 
 /**
  * Home's showcase: one card per rail view, each an index of what that view
@@ -101,12 +100,23 @@ export default function HomeBento() {
         </div>
       </Link>
 
-      {/* About: a fanned stack of photos. */}
+      {/* About: the work areas that shape my approach. */}
       <Link to="/about" className="bento__card bento__card--about">
         <CardHead Icon={User} title="About" desc="Operations leader building practical business automations." />
-        <div className="bento__media bento__fan" aria-hidden="true">
-          <span className="bento__photo">
-            <img src={profile.avatarSrc} alt="" loading="lazy" decoding="async" />
+        <div className="bento__media bento__about-flow" aria-hidden="true">
+          <span className="bento__about-step">
+            <span className="bento__about-icon"><Gear size={22} weight="duotone" /></span>
+            <span className="bento__about-label">Operations</span>
+          </span>
+          <span className="bento__about-connector" />
+          <span className="bento__about-step">
+            <span className="bento__about-icon"><AddressBook size={22} weight="duotone" /></span>
+            <span className="bento__about-label">Leadership</span>
+          </span>
+          <span className="bento__about-connector" />
+          <span className="bento__about-step">
+            <span className="bento__about-icon"><FunnelSimple size={22} weight="duotone" /></span>
+            <span className="bento__about-label">Automation</span>
           </span>
         </div>
       </Link>
