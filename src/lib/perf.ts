@@ -12,7 +12,7 @@
  *
  *   high  everything on - the design as drawn
  *   mid   backdrop-filter off, the plates go opaque (see styles/perf.css)
- *   low   the shader unmounts too; the page keeps the flat cream/ink ground
+ *   low   the decorative workflow background unmounts; theme ground remains
  *
  * The verdict lands on `<html data-perf>` and is remembered for the tab in
  * sessionStorage, so a route change never re-measures and a new tab on a
@@ -117,8 +117,8 @@ function settled(): Promise<void> {
     const id = window.setInterval(() => {
       if (ready()) done()
     }, 200)
-    // A page with no shader at all (reduced motion, touch, a failed chunk)
-    // still deserves to be measured - just later.
+    // A page without the background (for example, a low-tier page) still
+    // deserves to be measured - just later.
     const bail = window.setTimeout(done, 10000)
     if (ready()) done()
   })
