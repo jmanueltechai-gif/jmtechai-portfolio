@@ -229,10 +229,11 @@ function createMobileScene(width: number, height: number, elapsed: number): Scen
   let id = 0
   const nextId = () => id++
   const bottom = height - 36
-  const startY = Math.max(170, bottom - 600)
-  const toolOneY = startY + 150
-  const toolTwoY = startY + 300
-  const endY = startY + 450
+  const laneGap = Math.min(150, Math.max(100, (height - 180) / 3))
+  const startY = Math.max(160, bottom - laneGap * 3)
+  const toolOneY = startY + laneGap
+  const toolTwoY = startY + laneGap * 2
+  const endY = startY + laneGap * 3
   const start = makeNode(nextId(), 'mid', 'data', width * 0.82, startY, random)
   const toolOne = makeNode(nextId(), 'mid', 'tool', width * 0.82, toolOneY, random, 'n8n')
   const toolTwo = makeNode(nextId(), 'mid', 'tool', width * 0.24, toolTwoY, random, 'zapier')
@@ -374,7 +375,7 @@ export default function HeroCanvasV2() {
     let disposed = false
     let pointer: { x: number; y: number } | null = null
     let theme: Palette = { navy: '', muted: '', orange: '', paper: '' }
-    let scene: Scene
+    let scene: Scene = { nodes: [], chains: [], mergeNode: null, mobile: false }
     let totalPackets = 0
     let mergeAfter = 4 + Math.floor(Math.random() * 3)
     let mergePending = false
@@ -457,7 +458,8 @@ export default function HeroCanvasV2() {
 
       for (const node of scene.nodes) {
         if (node.layer === 'back') continue
-        const nearby = candidates.findIndex((item) => item.node === node) < 2
+        const candidateIndex = candidates.findIndex((item) => item.node === node)
+        const nearby = candidateIndex >= 0 && candidateIndex < 2
         const targetHighlight = nearby ? 1 : 0
         const fadeStep = dt / 0.2
         node.highlight = targetHighlight
@@ -734,6 +736,7 @@ export default function HeroCanvasV2() {
       window.clearTimeout(resizeTimer)
       resizeTimer = window.setTimeout(() => {
         resizeCanvas()
+        cursorEnabled = width >= 768 && !touchDevice
         rebuildScene()
         draw(elapsed)
       }, 150)
@@ -767,7 +770,7 @@ export default function HeroCanvasV2() {
     window.addEventListener('resize', onResize)
     window.addEventListener('themechange', onThemeChange)
     document.addEventListener('visibilitychange', onVisibilityChange)
-    if (cursorEnabled) {
+    if (!touchDevice) {
       window.addEventListener('mousemove', onMove)
       window.addEventListener('mouseout', onLeave)
     }
@@ -802,12 +805,12 @@ export default function HeroCanvasV2() {
       window.removeEventListener('resize', onResize)
       window.removeEventListener('themechange', onThemeChange)
       document.removeEventListener('visibilitychange', onVisibilityChange)
-      if (cursorEnabled) {
+      if (!touchDevice) {
         window.removeEventListener('mousemove', onMove)
         window.removeEventListener('mouseout', onLeave)
       }
     }
   }, [])
 
-  return <canvas ref={canvasRef} className="hero-canvas" aria-hidden="true" />
+  return <canvas ref={canvasRef} className="hero-canvas hero-network" aria-hidden="true" />
 }
