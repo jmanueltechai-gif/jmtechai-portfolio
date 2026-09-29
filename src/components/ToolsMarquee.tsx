@@ -42,6 +42,7 @@ export const tools: Tool[] = [
   { name: 'Make', iconPath: 'https://cdn.simpleicons.org/make/6D00CC' },
   { name: 'Airtable', iconPath: 'https://cdn.simpleicons.org/airtable/18BFFF' },
   { name: 'Asana', iconPath: 'https://cdn.simpleicons.org/asana/F06A6A' },
+  { name: 'Lovable' },
   { name: 'Zapier', iconPath: '/icons/ai/zapier.svg' },
   { name: 'Meta', iconPath: 'https://cdn.simpleicons.org/meta/0668E1' },
   { name: 'Apollo' },
